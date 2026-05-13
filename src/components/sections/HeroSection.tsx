@@ -190,7 +190,7 @@ export default function HeroSection() {
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <h1 className="text-display-xl mb-10 leading-[0.93]">
+            <h1 className="text-display-xl mb-4 md:mb-10 leading-[0.93] text-main">
               Infrastructure.
             </h1>
           </motion.div>
@@ -198,20 +198,19 @@ export default function HeroSection() {
           {/* Tagline */}
           <motion.p
             variants={itemVariants}
-            className="text-base md:text-lg max-w-md leading-relaxed mb-10 font-normal"
-            style={{ color: 'var(--text-secondary)' }}
+            className="text-base md:text-lg max-w-md leading-relaxed mb-10 font-normal text-sub"
           >
             Where engineering precision meets architectural vision.
             Blitcon Infra delivers spaces that endure, inspire, and transform communities across India.
           </motion.p>
 
           {/* CTAs */}
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-3 mb-20">
-            <Link href="#projects" className="btn btn-primary group">
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 mb-20">
+            <Link href="#projects" className="btn btn-primary group w-full sm:w-auto h-16 sm:h-auto">
               Explore Projects
               <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
-            <Link href="#contact" className="btn btn-outline group">
+            <Link href="#contact" className="btn btn-outline group w-full sm:w-auto h-16 sm:h-auto">
               Start a Project
             </Link>
           </motion.div>
@@ -219,20 +218,17 @@ export default function HeroSection() {
           {/* Specialisms strip */}
           <motion.div
             variants={itemVariants}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8"
-            style={{ borderTop: '1px solid var(--border-primary)' }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8 border-t border-border-primary"
           >
             {specialisms.map((s) => (
               <div key={s.value} className="group cursor-default">
                 <div
-                  className="text-sm font-black mb-0.5 transition-colors duration-300 group-hover:text-brand-600"
-                  style={{ color: 'var(--brand-accent)', fontFamily: 'inherit' }}
+                  className="text-sm font-black mb-0.5 transition-colors duration-300 group-hover:text-brand-600 text-brand-accent"
                 >
                   {s.value}
                 </div>
                 <div
-                  className="text-[10px] font-bold tracking-widest uppercase"
-                  style={{ color: 'var(--text-muted)' }}
+                  className="text-[10px] font-bold tracking-widest uppercase text-dim"
                 >
                   {s.label}
                 </div>
@@ -282,7 +278,7 @@ export default function HeroSection() {
       {/* Background watermark text */}
       <motion.div
         style={{ y: y2, opacity: watermarkOpacity, color: 'var(--text-primary)' } as any}
-        className="absolute right-0 bottom-16 text-[15vw] font-black leading-none select-none pointer-events-none overflow-hidden"
+        className="absolute right-0 bottom-16 text-[clamp(4rem,15vw,12rem)] font-black leading-none select-none pointer-events-none overflow-hidden"
         aria-hidden="true"
       >
         <span>BLITCON</span>

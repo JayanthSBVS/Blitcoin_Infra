@@ -127,38 +127,30 @@ export default function Footer() {
               <div className="flex items-center gap-3 mb-5">
                 <Image src="/logo.png" alt="Blitcon Infra" width={120} height={40} className="h-8 w-auto object-contain" />
                 <div>
-                  <div className="font-black text-base leading-none" style={{ color: 'var(--text-primary)' }}>Blitcon</div>
-                  <div className="text-[9px] font-black tracking-[0.3em] uppercase mt-0.5" style={{ color: 'var(--brand-accent)' }}>Infra</div>
+                  <div className="font-black text-base leading-none text-main">Blitcon</div>
+                  <div className="text-[9px] font-black tracking-[0.3em] uppercase mt-0.5 text-brand-accent">Infra</div>
                 </div>
               </div>
-              <p className="text-sm leading-relaxed mb-6 font-medium" style={{ color: 'var(--text-secondary)' }}>
+              <p className="text-sm leading-relaxed mb-6 font-medium text-sub">
                 Premium infrastructure and construction — built with precision, delivered with integrity, designed to last generations.
               </p>
               <div className="flex gap-2">
                 {socials.map(({ Icon, href, label }) => (
-                  <a
+                  <Link
                     key={label}
                     href={href}
                     aria-label={label}
-                    className="w-9 h-9 rounded-sm flex items-center justify-center transition-all duration-300 hover:scale-110 group"
-                    style={{
-                      background: 'var(--bg-secondary)',
-                      border: '1.5px solid var(--border-primary)',
-                      boxShadow: 'var(--shadow-xs)',
-                    }}
+                    className="w-9 h-9 rounded-sm flex items-center justify-center transition-all duration-300 hover:scale-110 group bg-secondary border border-border-primary shadow-xs hover:border-brand-accent/50"
                   >
-                    <Icon className="w-3.5 h-3.5 transition-colors duration-250" style={{ color: 'var(--text-muted)' }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--brand-accent)')}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
-                    />
-                  </a>
+                    <Icon className="w-3.5 h-3.5 text-dim group-hover:text-brand-accent transition-colors duration-250" />
+                  </Link>
                 ))}
               </div>
             </div>
 
             {/* Company links */}
             <div>
-              <h4 className="text-[9px] font-black uppercase tracking-[0.3em] mb-6" style={{ color: 'var(--text-muted)' }}>
+              <h4 className="text-[9px] font-black uppercase tracking-[0.3em] mb-6 text-dim">
                 Company
               </h4>
               <ul className="flex flex-col gap-3">
@@ -166,14 +158,10 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="group flex items-center gap-2 text-sm font-bold transition-colors duration-250"
-                      style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--brand-accent)')}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
+                      className="group flex items-center gap-2 text-sm font-bold text-sub hover:text-brand-accent transition-colors duration-250"
                     >
                       <span
-                        className="h-px transition-all duration-350 group-hover:w-3"
-                        style={{ width: 0, background: 'var(--brand-accent)', display: 'inline-block' }}
+                        className="h-px transition-all duration-350 group-hover:w-3 bg-brand-accent inline-block w-0"
                       />
                       {link.label}
                     </Link>
@@ -184,25 +172,21 @@ export default function Footer() {
 
             {/* Services links */}
             <div>
-              <h4 className="text-[9px] font-black uppercase tracking-[0.3em] mb-6" style={{ color: 'var(--text-muted)' }}>
+              <h4 className="text-[9px] font-black uppercase tracking-[0.3em] mb-6 text-dim">
                 Services
               </h4>
               <ul className="flex flex-col gap-3">
                 {serviceLinks.map((s) => (
                   <li key={s}>
-                    <a
-                      href="#services"
-                      className="group flex items-center gap-2 text-sm font-bold transition-colors duration-250"
-                      style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--brand-accent)')}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
+                    <Link
+                      href="/services"
+                      className="group flex items-center gap-2 text-sm font-bold text-sub hover:text-brand-accent transition-colors duration-250"
                     >
                       <span
-                        className="h-px transition-all duration-350 group-hover:w-3"
-                        style={{ width: 0, background: 'var(--brand-accent)', display: 'inline-block' }}
+                        className="h-px transition-all duration-350 group-hover:w-3 bg-brand-accent inline-block w-0"
                       />
                       {s}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -210,7 +194,7 @@ export default function Footer() {
 
             {/* Contact info */}
             <div>
-              <h4 className="text-[9px] font-black uppercase tracking-[0.3em] mb-6" style={{ color: 'var(--text-muted)' }}>
+              <h4 className="text-[9px] font-black uppercase tracking-[0.3em] mb-6 text-dim">
                 Contact
               </h4>
               <div className="flex flex-col gap-5">
@@ -221,15 +205,12 @@ export default function Footer() {
                   { label: 'RERA No.', value: 'P02400012345', href: '#' },
                 ].map(({ label, value, href }) => (
                   <div key={label}>
-                    <div className="text-[9px] font-black uppercase tracking-[0.25em] mb-1" style={{ color: 'var(--text-muted)' }}>
+                    <div className="text-[9px] font-black uppercase tracking-[0.25em] mb-1 text-dim">
                       {label}
                     </div>
                     <a
                       href={href}
-                      className="text-sm font-bold transition-colors duration-250"
-                      style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--brand-accent)')}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
+                      className="text-sm font-bold text-sub hover:text-brand-accent transition-colors duration-250"
                     >
                       {value}
                     </a>
@@ -240,26 +221,23 @@ export default function Footer() {
           </div>
 
           {/* Bottom bar */}
-          <div className="h-px w-full mb-6" style={{ background: 'linear-gradient(to right, transparent, var(--border-primary), transparent)' }} />
+          <div className="h-px w-full mb-6 bg-gradient-to-r from-transparent via-border-primary to-transparent" />
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-xs font-medium" style={{ color: 'var(--text-muted)' }}>
+            <p className="text-xs font-medium text-dim">
               © {new Date().getFullYear()} Blitcon Infra. All rights reserved.
             </p>
             <div className="flex gap-6">
               {['Privacy Policy', 'Terms of Use', 'RERA Disclosure'].map((l) => (
-                <a
+                <Link
                   key={l}
                   href="#"
-                  className="text-xs font-bold transition-colors duration-250"
-                  style={{ color: 'var(--text-muted)', textDecoration: 'none' }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
+                  className="text-xs font-bold text-dim hover:text-sub transition-colors duration-250"
                 >
                   {l}
-                </a>
+                </Link>
               ))}
             </div>
-            <p className="text-xs font-black tracking-widest" style={{ color: 'var(--border-primary)', opacity: 0.8 }}>
+            <p className="text-xs font-black tracking-widest text-border-primary opacity-80 uppercase">
               EST. 2019 · HYDERABAD
             </p>
           </div>

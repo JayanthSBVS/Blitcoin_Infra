@@ -59,6 +59,31 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Blitcon Infra",
+              "url": "https://blitconinfra.com",
+              "logo": "https://blitconinfra.com/logo.png",
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+91-7997696688",
+                "contactType": "customer service",
+                "areaServed": "IN",
+                "availableLanguage": "en"
+              },
+              "sameAs": [
+                "https://www.linkedin.com/company/blitconinfra",
+                "https://www.instagram.com/blitconinfra"
+              ]
+            }),
+          }}
+        />
+      </head>
       <body className={`${inter.variable} antialiased transition-colors duration-500`} style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <SmoothScrollProvider>

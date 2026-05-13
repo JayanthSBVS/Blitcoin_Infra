@@ -57,23 +57,28 @@ function ProjectCard({ project, index, onClick }: { project: typeof projects[0];
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-8%' })
 
-  const sizes = ['col-span-1 row-span-1', 'col-span-1 row-span-2', 'col-span-2 row-span-1', 'col-span-1 row-span-1', 'col-span-1 row-span-1', 'col-span-1 row-span-1']
+    const sizes = [
+      'col-span-1 row-span-1', 
+      'col-span-1 lg:row-span-2', 
+      'col-span-1 lg:col-span-2 row-span-1', 
+      'col-span-1 row-span-1', 
+      'col-span-1 row-span-1', 
+      'col-span-1 row-span-1'
+    ]
 
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onClick={onClick}
-      className={`relative overflow-hidden cursor-pointer group rounded-sm ${sizes[index % sizes.length]}`}
+    return (
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 40 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        onClick={onClick}
+      className={`relative overflow-hidden cursor-pointer group rounded-sm ${sizes[index % sizes.length]} active:scale-[0.98] transition-all duration-300`}
       style={{
         minHeight: index % 3 === 1 ? '420px' : '260px',
         boxShadow: hovered ? 'var(--shadow-xl)' : 'var(--shadow-md)',
-        transition: 'box-shadow 0.4s ease, transform 0.4s ease',
-        transform: hovered ? 'translateY(-6px)' : 'translateY(0)',
       }}
     >
       <Image

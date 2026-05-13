@@ -36,9 +36,9 @@ const config: Config = {
         'brand-deep':    'var(--brand-deep)',
 
         // ── Content / Text (Explicit) ──
-        'text-main':      'var(--text-primary)',
-        'text-sub':       'var(--text-secondary)',
-        'text-dim':       'var(--text-muted)',
+        'main':      'var(--text-primary)',
+        'sub':       'var(--text-secondary)',
+        'dim':       'var(--text-muted)',
 
         // ── Surface ──
         'card':           'var(--surface-card)',

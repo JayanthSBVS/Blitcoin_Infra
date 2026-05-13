@@ -216,22 +216,22 @@ export default function PackageConfigurator() {
       </div>
 
       {/* -- Mobile Comparison Experience -- */}
-      <div className="lg:hidden space-y-4">
+      <div className="lg:hidden space-y-6">
         {packageData.map((category) => (
-          <div key={category.name} className="card-premium overflow-hidden bg-card shadow-sm border-border-primary">
+          <div key={category.name} className="card-premium overflow-hidden bg-card shadow-md border-border-primary rounded-sm">
             <button 
               onClick={() => toggleCategory(category.name)}
-              className="w-full flex items-center justify-between p-6"
+              className="w-full flex items-center justify-between p-7 active:bg-surface-stone/30 transition-colors"
             >
-              <div className="flex items-center gap-3">
-                <span className="text-xl">{category.icon}</span>
-                <span className="text-base font-black tracking-tight text-main">{category.name}</span>
+              <div className="flex items-center gap-4">
+                <span className="text-2xl">{category.icon}</span>
+                <span className="text-lg font-black tracking-tighter text-main">{category.name}</span>
               </div>
-              <div className={`w-8 h-8 rounded-full border transition-all duration-300 flex items-center justify-center ${expandedCategories.includes(category.name) ? 'bg-brand-accent border-brand-accent' : 'bg-card border-border-primary'}`}>
+              <div className={`w-9 h-9 rounded-full border transition-all duration-500 flex items-center justify-center ${expandedCategories.includes(category.name) ? 'bg-brand-accent border-brand-accent rotate-180' : 'bg-card border-border-primary'}`}>
                 {expandedCategories.includes(category.name) ? (
-                  <Minus className="w-3.5 h-3.5 text-white" />
+                  <Minus className="w-4 h-4 text-white" />
                 ) : (
-                  <Plus className="w-3.5 h-3.5 text-main" />
+                  <Plus className="w-4 h-4 text-main" />
                 )}
               </div>
             </button>

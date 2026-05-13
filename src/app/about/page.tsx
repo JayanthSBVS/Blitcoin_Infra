@@ -24,9 +24,9 @@ export default function AboutPage() {
         />
 
         {/* -- Company Story -- */}
-        <section className="py-24 lg:py-32">
+        <section className="py-20 lg:py-32">
           <div className="container-fluid">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
               <div className="lg:col-span-6">
                 <Reveal>
                   <div className="flex items-center gap-3 mb-6">
@@ -138,7 +138,7 @@ export default function AboutPage() {
               </div>
             </Reveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 lg:gap-12">
               {[
                 { 
                   icon: Shield, 

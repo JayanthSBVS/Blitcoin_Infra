@@ -30,14 +30,14 @@ export default function ContactSection() {
     background: 'var(--surface-card)',
     border: `1.5px solid ${focused === field ? 'var(--brand-accent)' : 'var(--border-primary)'}`,
     color: 'var(--text-primary)',
-    fontSize: '0.875rem',
+    fontSize: '0.925rem',
     fontWeight: '600',
     fontFamily: 'inherit',
-    padding: '1rem 1.25rem',
+    padding: '1.125rem 1.5rem',
     outline: 'none',
-    transition: 'border-color 0.25s ease, box-shadow 0.25s ease',
-    boxShadow: focused === field ? '0 0 0 3px rgba(30,64,175,0.08)' : 'var(--shadow-xs)',
-    borderRadius: '2px',
+    transition: 'all 0.3s ease',
+    boxShadow: focused === field ? '0 10px 20px -10px rgba(30,64,175,0.2)' : 'var(--shadow-sm)',
+    borderRadius: '4px',
   } as React.CSSProperties)
 
   return (
@@ -61,7 +61,6 @@ export default function ContactSection() {
             Start Your <span className="gradient-text-brand">Project</span>
           </motion.h2>
         </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
           {/* Info column */}
           <motion.div
@@ -245,7 +244,7 @@ export default function ContactSection() {
                 <button
                   type="submit"
                   suppressHydrationWarning
-                  className="btn btn-primary w-full justify-center mt-1"
+                  className="btn btn-primary w-full justify-center h-16 sm:h-auto mt-2 text-[11px] tracking-[0.2em] shadow-brand active:scale-[0.98] transition-all"
                 >
                   Send Project Brief
                   <Send className="w-4 h-4" />

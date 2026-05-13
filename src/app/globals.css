@@ -40,6 +40,11 @@
   --text-muted:     #64748b;  /* Muted slate */
   --text-disabled:  #94a3b8;
 
+  /* Semantic Aliases for Components */
+  --text-main:      var(--text-primary);
+  --text-sub:       var(--text-secondary);
+  --text-dim:       var(--text-muted);
+
   /* Borders */
   --border-primary:  rgba(15, 23, 42, 0.10);
   --border-secondary: rgba(15, 23, 42, 0.05);
@@ -95,6 +100,11 @@
   --text-tertiary:  #94a3b8;
   --text-muted:     #64748b;
   --text-disabled:  #475569;
+
+  /* Semantic Aliases for Components */
+  --text-main:      var(--text-primary);
+  --text-sub:       var(--text-secondary);
+  --text-dim:       var(--text-muted);
 
   --border-primary:   rgba(255, 255, 255, 0.07);
   --border-secondary: rgba(255, 255, 255, 0.04);
@@ -307,6 +317,8 @@ body {
   overflow: hidden;
   text-decoration: none;
   isolation: isolate;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .btn::after {
@@ -580,6 +592,12 @@ body {
   .text-display-md { font-size: clamp(1.5rem, 6vw, 2.25rem); }
   body { cursor: auto; }
   .cursor-outer, .cursor-inner { display: none; }
+  
+  /* Mobile Spacing & Rhythm Refinements */
+  .section-pad { padding-block: calc(var(--section-padding) * 0.8); }
+  
+  /* Touch Feedback Utility */
+  .touch-active:active { transform: scale(0.96); opacity: 0.9; }
 }
 
 /* =============================================

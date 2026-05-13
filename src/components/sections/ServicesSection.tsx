@@ -108,16 +108,15 @@ function ServiceCard({
           </motion.div>
         </div>
 
-        <h3 className="font-black text-lg mb-1 leading-tight" style={{ color: 'var(--text-primary)' }}>
+        <h3 className="font-black text-lg mb-1 leading-tight text-main">
           {service.title}
         </h3>
         <p
-          className="text-[9px] font-black tracking-[0.25em] uppercase mb-3"
-          style={{ color: 'var(--brand-accent)' }}
+          className="text-[9px] font-black tracking-[0.25em] uppercase mb-3 text-brand-accent"
         >
           {service.tagline}
         </p>
-        <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+        <p className="text-sm leading-relaxed text-sub">
           {service.description}
         </p>
 
@@ -138,8 +137,8 @@ function ServiceCard({
                 <div className="grid grid-cols-2 gap-2 mb-5">
                   {service.features.map((f) => (
                     <div key={f} className="flex items-center gap-2">
-                      <Check className="w-3.5 h-3.5 flex-shrink-0" style={{ color: 'var(--brand-accent)' }} />
-                      <span className="text-[11px] font-bold" style={{ color: 'var(--text-secondary)' }}>{f}</span>
+                      <Check className="w-3.5 h-3.5 flex-shrink-0 text-brand-accent" />
+                      <span className="text-[11px] font-bold text-sub">{f}</span>
                     </div>
                   ))}
                 </div>

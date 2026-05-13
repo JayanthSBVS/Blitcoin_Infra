@@ -31,13 +31,13 @@ function ValueCard({ v, i }: { v: typeof values[0]; i: number }) {
       transition={{ duration: 0.65, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
       className="card-premium p-6 group cursor-default"
     >
-      <div className="text-2xl mb-4 transition-transform duration-300 group-hover:scale-110 inline-block" style={{ color: 'var(--brand-accent)' }}>
+      <div className="text-2xl mb-4 transition-transform duration-300 group-hover:scale-110 inline-block text-brand-accent">
         {v.icon}
       </div>
-      <h4 className="font-black text-sm uppercase tracking-wide mb-2" style={{ color: 'var(--text-main)' }}>
+      <h4 className="font-black text-sm uppercase tracking-wide mb-2 text-main">
         {v.title}
       </h4>
-      <p className="text-sm leading-relaxed font-medium" style={{ color: 'var(--text-sub)' }}>
+      <p className="text-sm leading-relaxed font-medium text-sub">
         {v.desc}
       </p>
     </motion.div>
@@ -66,11 +66,11 @@ function TimelineItem({ item, index }: { item: typeof milestones[0]; index: numb
         <div className="w-px flex-1 mt-2" style={{ background: 'var(--border-primary)' }} />
       </div>
       <div className="pb-10">
-        <div className="text-[10px] font-black tracking-[0.25em] uppercase mb-1" style={{ color: 'var(--brand-accent)' }}>
+        <div className="text-[10px] font-black tracking-[0.25em] uppercase mb-1 text-brand-accent">
           {item.year}
         </div>
-        <h3 className="font-black text-lg mb-1.5" style={{ color: 'var(--text-main)' }}>{item.title}</h3>
-        <p className="text-sm leading-relaxed font-medium" style={{ color: 'var(--text-sub)' }}>{item.desc}</p>
+        <h3 className="font-black text-lg mb-1.5 text-main">{item.title}</h3>
+        <p className="text-sm leading-relaxed font-medium text-sub">{item.desc}</p>
       </div>
     </motion.div>
   )
@@ -117,8 +117,7 @@ export default function AboutSection() {
             initial={{ opacity: 0, y: 24 }}
             animate={headInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.18 }}
-            className="text-base md:text-lg leading-relaxed font-medium max-w-2xl mb-8"
-            style={{ color: 'var(--text-sub)' }}
+            className="text-base md:text-lg leading-relaxed font-medium max-w-2xl mb-8 text-sub"
           >
             With over 6 years of expertise, we specialize in residential construction, commercial projects,
             and premium interior design. We don't just build — we engineer experiences and craft communities.
@@ -140,7 +139,7 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 mb-24">
           {/* Timeline */}
           <div>
-            <div className="text-[9px] font-black tracking-[0.3em] uppercase mb-8" style={{ color: 'var(--text-dim)' }}>
+            <div className="text-[9px] font-black tracking-[0.3em] uppercase mb-8 text-dim">
               Our Journey
             </div>
             {milestones.map((m, i) => (
@@ -167,16 +166,12 @@ export default function AboutSection() {
 
                 {/* Est. badge */}
                 <div
-                  className="absolute top-5 left-5 px-4 py-3 rounded-sm shadow-lg backdrop-blur-md"
-                  style={{
-                    background: 'var(--surface-card)',
-                    border: '1px solid var(--border-primary)',
-                  }}
+                  className="absolute top-5 left-5 px-4 py-3 rounded-sm shadow-lg backdrop-blur-md bg-card border border-border-primary"
                 >
-                  <div className="text-[9px] font-black tracking-[0.25em] uppercase" style={{ color: 'var(--brand-accent)' }}>
+                  <div className="text-[9px] font-black tracking-[0.25em] uppercase text-brand-accent">
                     Est. 2019
                   </div>
-                  <div className="font-black text-sm mt-0.5" style={{ color: 'var(--text-main)' }}>
+                  <div className="font-black text-sm mt-0.5 text-main">
                     Blitcon Infra
                   </div>
                 </div>
@@ -184,16 +179,12 @@ export default function AboutSection() {
                 {/* Headquarters Badge - Fixed for Dark Mode Visibility */}
                 <div className="absolute bottom-5 left-5 right-5">
                   <div
-                    className="px-5 py-4 rounded-sm shadow-2xl backdrop-blur-xl border transition-all duration-300"
-                    style={{
-                      background: 'var(--surface-card)',
-                      borderColor: 'var(--border-primary)',
-                    }}
+                    className="px-5 py-4 rounded-sm shadow-2xl backdrop-blur-xl border transition-all duration-300 bg-card border-border-primary"
                   >
-                    <div className="text-[9px] font-black tracking-[0.25em] uppercase mb-1" style={{ color: 'var(--text-dim)' }}>
+                    <div className="text-[9px] font-black tracking-[0.25em] uppercase mb-1 text-dim">
                       Headquarters
                     </div>
-                    <div className="font-black text-base tracking-tight" style={{ color: 'var(--text-main)' }}>
+                    <div className="font-black text-base tracking-tight text-main">
                       Hyderabad, Telangana
                     </div>
                   </div>
@@ -205,7 +196,7 @@ export default function AboutSection() {
 
         {/* Values Grid */}
         <div>
-          <div className="text-[9px] font-black tracking-[0.3em] uppercase mb-8" style={{ color: 'var(--text-dim)' }}>
+          <div className="text-[9px] font-black tracking-[0.3em] uppercase mb-8 text-dim">
             Our Values
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
