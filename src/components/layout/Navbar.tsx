@@ -7,8 +7,10 @@ import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-
 import { Menu, X, ArrowUpRight } from 'lucide-react'
 import ThemeToggle from '@/components/ui/ThemeToggle'
 import { usePathname } from 'next/navigation'
+import { useTheme } from 'next-themes'
 
 const navLinks = [
+  { label: 'Home', href: '/', mobileOnly: true },
   { label: 'About', href: '/about' },
   { label: 'Services', href: '/services' },
   { label: 'Projects', href: '/projects' },
@@ -32,8 +34,14 @@ const linkVariants = {
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
+  const { theme } = useTheme()
   const { scrollY } = useScroll()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     setIsScrolled(latest > 50)
@@ -46,6 +54,16 @@ export default function Navbar() {
 
   // Determine if the navbar should be in "Hero Mode" (Transparent bg)
   const isHeroMode = !isScrolled && !menuOpen
+  const isDark = mounted && theme === 'dark'
+  
+  // Adaptive color logic for visibility
+  const textColor = isHeroMode 
+    ? (isDark ? '#ffffff' : 'var(--text-main)') 
+    : 'var(--text-main)'
+
+  const secondaryTextColor = isHeroMode
+    ? (isDark ? '#ffffff' : 'var(--text-secondary)')
+    : 'var(--text-secondary)'
 
   return (
     <>
@@ -86,7 +104,7 @@ export default function Navbar() {
             <div className="flex flex-col leading-none border-l border-border-primary/50 pl-2 lg:pl-4 py-0.5">
               <span 
                 className="font-black text-lg lg:text-2xl tracking-tighter transition-colors duration-500"
-                style={{ color: isHeroMode ? '#ffffff' : 'var(--text-main)' }}
+                style={{ color: textColor }}
               >
                 Blitcon
               </span>
@@ -102,7 +120,7 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-10" aria-label="Main navigation">
-            {navLinks.map((link) => {
+            {navLinks.filter(l => !l.mobileOnly).map((link) => {
               const isActive = pathname === link.href
               return (
                 <Link
@@ -112,7 +130,7 @@ export default function Navbar() {
                   style={{
                     color: isActive 
                       ? 'var(--brand-accent)' 
-                      : isHeroMode ? '#ffffff' : 'var(--text-secondary)',
+                      : textColor,
                   }}
                 >
                   {link.label}
@@ -161,11 +179,11 @@ export default function Navbar() {
               <AnimatePresence mode="wait">
                 {menuOpen ? (
                   <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.3 }}>
-                    <X className="w-4 h-4" style={{ color: isHeroMode ? '#ffffff' : 'var(--text-main)' }} />
+                    <X className="w-4 h-4" style={{ color: textColor }} />
                   </motion.div>
                 ) : (
                   <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.3 }}>
-                    <Menu className="w-4 h-4" style={{ color: isHeroMode ? '#ffffff' : 'var(--text-main)' }} />
+                    <Menu className="w-4 h-4" style={{ color: textColor }} />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -227,7 +245,6 @@ export default function Navbar() {
                       className="group flex items-center justify-between py-5 border-b border-border-primary transition-all duration-300 px-2"
                     >
                       <div className="flex items-baseline gap-4">
-                        <span className="text-[10px] font-black text-brand-accent/40 font-mono">0{i + 1}</span>
                         <span
                           className="text-display-sm group-hover:text-brand-accent transition-all duration-300 text-main font-black"
                         >
