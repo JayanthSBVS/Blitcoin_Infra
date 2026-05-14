@@ -55,14 +55,16 @@ export default function Navbar() {
   // Determine if the navbar should be in "Hero Mode" (Transparent bg)
   const isHeroMode = !isScrolled && !menuOpen
   const isDark = mounted && theme === 'dark'
+  const isHomePage = pathname === '/'
   
   // Adaptive color logic for visibility
+  // Internal pages in light theme should start with WHITE for cinematic harmony
   const textColor = isHeroMode 
-    ? (isDark ? '#ffffff' : 'var(--text-main)') 
+    ? (isDark ? '#ffffff' : (isHomePage ? 'var(--text-main)' : '#ffffff')) 
     : 'var(--text-main)'
 
   const secondaryTextColor = isHeroMode
-    ? (isDark ? '#ffffff' : 'var(--text-secondary)')
+    ? (isDark ? '#ffffff' : (isHomePage ? 'var(--text-secondary)' : '#ffffff'))
     : 'var(--text-secondary)'
 
   return (
@@ -156,14 +158,6 @@ export default function Navbar() {
             <div className="scale-90 lg:scale-100 origin-right">
               <ThemeToggle />
             </div>
-            
-            <Link
-              href="/contact"
-              className="hidden lg:flex btn btn-primary text-[11px] py-2.5 px-6 rounded-sm shadow-brand hover:shadow-brand-lg transition-all duration-300"
-            >
-              Start a Project
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </Link>
 
             {/* Mobile menu button - Refined Circular Glass */}
             <button
