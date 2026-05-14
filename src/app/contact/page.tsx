@@ -50,7 +50,7 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h4 className="text-[10px] font-black uppercase tracking-[0.25em] text-dim mb-2">Email</h4>
-                        <p className="text-xl font-black text-main">Projects@blitconinfra.com</p>
+                        <p className="text-base sm:text-xl font-black text-main break-all sm:break-normal uppercase tracking-tight">Projects@blitconinfra.com</p>
                         <p className="text-sm text-sub font-medium">Inquiries within 24 hours</p>
                       </div>
                     </div>

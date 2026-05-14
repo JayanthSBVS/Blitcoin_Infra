@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState, memo, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Plus, Minus, Check, ArrowRight, ShieldCheck, Gem, Crown } from 'lucide-react'
+import { Plus, Minus, ShieldCheck, Gem, Crown, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
 interface PackageItem {
@@ -105,21 +105,145 @@ const packageData: PackageCategory[] = [
   }
 ]
 
+// --- Performance Optimized Sub-Components ---
+
+const DesktopCategory = memo(({ category, isExpanded, onToggle }: { 
+  category: PackageCategory, 
+  isExpanded: boolean, 
+  onToggle: (name: string) => void 
+}) => (
+  <div className="py-1">
+    <button 
+      onClick={() => onToggle(category.name)}
+      className="w-full flex items-center justify-between py-5 px-4 hover:bg-surface-stone/40 transition-all duration-300 rounded-sm group outline-none focus-visible:ring-1 focus-visible:ring-brand-accent"
+    >
+      <div className="flex items-center gap-4">
+        <span className="text-xl sm:text-2xl">{category.icon}</span>
+        <span className="text-base sm:text-lg font-black tracking-tight text-main">{category.name}</span>
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="text-[10px] font-bold uppercase tracking-widest text-dim opacity-0 group-hover:opacity-100 transition-opacity hidden sm:inline">
+          {isExpanded ? 'Collapse' : 'Expand Details'}
+        </span>
+        <div className={`w-8 h-8 rounded-full border transition-all duration-500 flex items-center justify-center ${isExpanded ? 'bg-brand-accent border-brand-accent scale-110 shadow-lg' : 'bg-card border-border-primary'}`}>
+          {isExpanded ? (
+            <Minus className="w-3.5 h-3.5 text-white" />
+          ) : (
+            <Plus className="w-3.5 h-3.5 text-main" />
+          )}
+        </div>
+      </div>
+    </button>
+
+    <AnimatePresence initial={false}>
+      {isExpanded && (
+        <motion.div
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: 'auto', opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="overflow-hidden will-change-[height]"
+        >
+          <div className="pb-8">
+            {category.items.map((item, idx) => (
+              <div key={idx} className="grid grid-cols-12 py-4 px-4 hover:bg-surface-stone/20 transition-colors border-t border-border-primary/20 first:border-none">
+                <div className="col-span-3 flex items-center">
+                  <span className="text-sm font-bold text-sub">{item.label}</span>
+                </div>
+                <div className="col-span-3 px-6 text-center">
+                  <span className="text-sm font-medium text-main">{item.standard}</span>
+                </div>
+                <div className="col-span-3 px-6 text-center border-x border-border-secondary/20">
+                  <span className="text-sm font-bold text-main">{item.premium}</span>
+                </div>
+                <div className="col-span-3 px-6 text-center">
+                  <span className="text-sm font-bold text-main">{item.luxury}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  </div>
+))
+DesktopCategory.displayName = 'DesktopCategory'
+
+const MobileCategory = memo(({ category, isExpanded, onToggle }: { 
+  category: PackageCategory, 
+  isExpanded: boolean, 
+  onToggle: (name: string) => void 
+}) => (
+  <div className="card-premium overflow-hidden bg-card shadow-sm border-border-primary rounded-sm transition-all duration-300">
+    <button 
+      onClick={() => onToggle(category.name)}
+      className="w-full flex items-center justify-between p-6 active:bg-surface-stone/20 transition-colors outline-none"
+    >
+      <div className="flex items-center gap-4">
+        <span className="text-xl">{category.icon}</span>
+        <span className="text-base font-black tracking-tight text-main">{category.name}</span>
+      </div>
+      <div className={`w-8 h-8 rounded-full border transition-all duration-500 flex items-center justify-center ${isExpanded ? 'bg-brand-accent border-brand-accent rotate-180 shadow-md' : 'bg-card border-border-primary'}`}>
+        {isExpanded ? (
+          <Minus className="w-3.5 h-3.5 text-white" />
+        ) : (
+          <Plus className="w-3.5 h-3.5 text-main" />
+        )}
+      </div>
+    </button>
+
+    <AnimatePresence initial={false}>
+      {isExpanded && (
+        <motion.div
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: 'auto', opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.35, ease: 'easeInOut' }}
+          className="overflow-hidden border-t border-border-primary will-change-[height]"
+        >
+          <div className="p-4 space-y-6 bg-surface-stone/20">
+            {category.items.map((item, idx) => (
+              <div key={idx} className="space-y-3 pb-5 border-b border-border-primary/50 last:border-none last:pb-0">
+                <div className="text-[10px] font-black uppercase tracking-widest text-brand-accent">{item.label}</div>
+                <div className="grid grid-cols-1 gap-2">
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-dim text-xs">Standard</span>
+                    <span className="font-bold text-main text-xs">{item.standard}</span>
+                  </div>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-dim text-xs">Premium</span>
+                    <span className="font-bold text-brand-primary text-xs">{item.premium}</span>
+                  </div>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-dim text-xs">Luxury</span>
+                    <span className="font-black text-brand-accent text-xs">{item.luxury}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  </div>
+))
+MobileCategory.displayName = 'MobileCategory'
+
 export default function PackageConfigurator() {
   const [expandedCategories, setExpandedCategories] = useState<string[]>(['Civil Works'])
 
-  const toggleCategory = (name: string) => {
+  const toggleCategory = useCallback((name: string) => {
     setExpandedCategories(prev => 
       prev.includes(name) ? prev.filter(c => c !== name) : [...prev, name]
     )
-  }
+  }, [])
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
       {/* -- Desktop Comparison Table -- */}
       <div className="hidden lg:block">
-        {/* Sticky Header */}
-        <div className="sticky top-[80px] z-50 bg-surface/80 backdrop-blur-xl border-b border-border-primary">
+        {/* Sticky Header - Optimized Blur */}
+        <div className="sticky top-[80px] z-50 bg-surface/90 backdrop-blur-md border-b border-border-primary transition-all duration-300">
           <div className="grid grid-cols-12 py-8 items-center">
             <div className="col-span-3">
               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-dim">Specifications</span>
@@ -154,136 +278,43 @@ export default function PackageConfigurator() {
           </div>
         </div>
 
-        {/* Categories */}
+        {/* Categories - Memoized for Performance */}
         <div className="divide-y divide-border-secondary">
           {packageData.map((category) => (
-            <div key={category.name} className="py-2">
-              <button 
-                onClick={() => toggleCategory(category.name)}
-                className="w-full flex items-center justify-between py-6 px-4 hover:bg-surface-stone/50 transition-colors rounded-sm group"
-              >
-                <div className="flex items-center gap-4">
-                  <span className="text-2xl">{category.icon}</span>
-                  <span className="text-lg font-black tracking-tight text-main">{category.name}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-dim opacity-0 group-hover:opacity-100 transition-opacity">
-                    {expandedCategories.includes(category.name) ? 'Collapse' : 'Expand Details'}
-                  </span>
-                  <div className={`w-8 h-8 rounded-full border transition-all duration-300 flex items-center justify-center ${expandedCategories.includes(category.name) ? 'bg-brand-accent border-brand-accent' : 'bg-card border-border-primary'}`}>
-                    {expandedCategories.includes(category.name) ? (
-                      <Minus className="w-3.5 h-3.5 text-white" />
-                    ) : (
-                      <Plus className="w-3.5 h-3.5 text-main" />
-                    )}
-                  </div>
-                </div>
-              </button>
-
-              <AnimatePresence>
-                {expandedCategories.includes(category.name) && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    className="overflow-hidden"
-                  >
-                    <div className="pb-8">
-                      {category.items.map((item, idx) => (
-                        <div key={idx} className="grid grid-cols-12 py-4 px-4 hover:bg-surface-stone/30 transition-colors border-t border-border-primary/30 first:border-none">
-                          <div className="col-span-3 flex items-center">
-                            <span className="text-sm font-bold text-sub">{item.label}</span>
-                          </div>
-                          <div className="col-span-3 px-6 text-center">
-                            <span className="text-sm font-medium text-main">{item.standard}</span>
-                          </div>
-                          <div className="col-span-3 px-6 text-center border-x border-border-secondary/30">
-                            <span className="text-sm font-bold text-main">{item.premium}</span>
-                          </div>
-                          <div className="col-span-3 px-6 text-center">
-                            <span className="text-sm font-bold text-main">{item.luxury}</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+            <DesktopCategory 
+              key={category.name} 
+              category={category} 
+              isExpanded={expandedCategories.includes(category.name)}
+              onToggle={toggleCategory}
+            />
           ))}
         </div>
       </div>
 
       {/* -- Mobile Comparison Experience -- */}
-      <div className="lg:hidden space-y-6">
+      <div className="lg:hidden space-y-4 sm:space-y-6">
         {packageData.map((category) => (
-          <div key={category.name} className="card-premium overflow-hidden bg-card shadow-md border-border-primary rounded-sm">
-            <button 
-              onClick={() => toggleCategory(category.name)}
-              className="w-full flex items-center justify-between p-7 active:bg-surface-stone/30 transition-colors"
-            >
-              <div className="flex items-center gap-4">
-                <span className="text-2xl">{category.icon}</span>
-                <span className="text-lg font-black tracking-tighter text-main">{category.name}</span>
-              </div>
-              <div className={`w-9 h-9 rounded-full border transition-all duration-500 flex items-center justify-center ${expandedCategories.includes(category.name) ? 'bg-brand-accent border-brand-accent rotate-180' : 'bg-card border-border-primary'}`}>
-                {expandedCategories.includes(category.name) ? (
-                  <Minus className="w-4 h-4 text-white" />
-                ) : (
-                  <Plus className="w-4 h-4 text-main" />
-                )}
-              </div>
-            </button>
-
-            <AnimatePresence>
-              {expandedCategories.includes(category.name) && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  className="overflow-hidden border-t border-border-primary"
-                >
-                  <div className="p-4 space-y-8 bg-surface-stone/30">
-                    {category.items.map((item, idx) => (
-                      <div key={idx} className="space-y-4 pb-6 border-b border-border-primary last:border-none last:pb-0">
-                        <div className="text-[10px] font-black uppercase tracking-widest text-brand-accent">{item.label}</div>
-                        <div className="grid grid-cols-1 gap-3">
-                          <div className="flex justify-between items-center text-sm">
-                            <span className="text-dim">Standard</span>
-                            <span className="font-bold text-main">{item.standard}</span>
-                          </div>
-                          <div className="flex justify-between items-center text-sm">
-                            <span className="text-dim">Premium</span>
-                            <span className="font-bold text-brand-primary">{item.premium}</span>
-                          </div>
-                          <div className="flex justify-between items-center text-sm">
-                            <span className="text-dim">Luxury</span>
-                            <span className="font-black text-brand-accent">{item.luxury}</span>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+          <MobileCategory 
+            key={category.name} 
+            category={category}
+            isExpanded={expandedCategories.includes(category.name)}
+            onToggle={toggleCategory}
+          />
         ))}
       </div>
 
       {/* -- Footer CTA -- */}
-      <div className="mt-24 mb-12 p-12 bg-surface-stone rounded-sm text-center relative overflow-hidden group border border-border-primary shadow-xl">
+      <div className="mt-20 lg:mt-24 mb-12 p-10 lg:p-12 bg-surface-stone rounded-sm text-center relative overflow-hidden group border border-border-primary shadow-xl">
         <div className="absolute inset-0 arch-grid opacity-10 pointer-events-none" />
         <div className="relative z-10">
-          <h2 className="text-3xl font-black text-main mb-6">Need a Custom Package?</h2>
-          <p className="text-sub max-w-2xl mx-auto mb-10 font-medium leading-relaxed">
+          <h2 className="text-2xl lg:text-3xl font-black text-main mb-6">Need a Custom Package?</h2>
+          <p className="text-sub max-w-2xl mx-auto mb-10 font-medium leading-relaxed text-sm lg:text-base">
             We understand every dream is unique. Our engineering team can create a tailor-made material specification that fits your specific architectural vision and budget.
           </p>
           <div className="flex items-center justify-center">
             <Link 
               href="/contact"
-              className="btn btn-primary px-12 py-4 rounded-sm font-black uppercase tracking-widest text-[11px] flex items-center gap-3 transition-all duration-300 shadow-brand hover:shadow-brand-lg"
+              className="btn btn-primary px-10 lg:px-12 py-4 rounded-sm font-black uppercase tracking-widest text-[10px] lg:text-[11px] flex items-center gap-3 transition-all duration-300 shadow-brand hover:shadow-brand-lg active:scale-95"
             >
               Book Consultation
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
