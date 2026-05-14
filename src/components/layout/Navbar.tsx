@@ -22,10 +22,10 @@ const menuVariants = {
 }
 
 const linkVariants = {
-  closed: { opacity: 0, x: 40, filter: 'blur(10px)' },
+  closed: { opacity: 0, y: 30, filter: 'blur(8px)', rotate: 2 },
   open: (i: number) => ({
-    opacity: 1, x: 0, filter: 'blur(0px)',
-    transition: { delay: 0.12 + i * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+    opacity: 1, y: 0, filter: 'blur(0px)', rotate: 0,
+    transition: { delay: 0.2 + i * 0.07, duration: 0.8, ease: [0.16, 1, 0.3, 1] },
   }),
 }
 
@@ -50,15 +50,15 @@ export default function Navbar() {
   return (
     <>
       <motion.header
-        initial={{ y: -80, opacity: 0 }}
+        initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
         className="fixed top-0 left-0 right-0 z-[9000] transition-all duration-500"
         style={isHeroMode ? {
-          padding: '22px 0',
+          padding: 'clamp(12px, 3vw, 22px) 0',
           background: 'transparent',
         } : {
-          padding: '10px 0',
+          padding: 'clamp(8px, 2vw, 12px) 0',
           backgroundColor: 'var(--surface-glass)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
@@ -66,9 +66,9 @@ export default function Navbar() {
           boxShadow: 'var(--shadow-md)',
         }}
       >
-        <div className="container-fluid flex items-center justify-between">
+        <div className="container-fluid flex items-center justify-between gap-4">
           {/* Logo & Brand Identity */}
-          <Link href="/" className="flex items-center gap-4 group" aria-label="Blitcon Infra Home">
+          <Link href="/" className="flex items-center gap-2 lg:gap-4 group shrink-0" aria-label="Blitcon Infra Home">
             <motion.div
               className="relative flex-shrink-0"
               whileHover={{ scale: 1.05 }}
@@ -79,21 +79,20 @@ export default function Navbar() {
                 alt="Blitcon Infra Logo Symbol"
                 width={120}
                 height={40}
-                className="w-auto h-9 lg:h-10 object-contain drop-shadow-sm"
+                className="w-auto h-7 lg:h-10 object-contain drop-shadow-sm transition-all duration-300"
               />
             </motion.div>
             
-            <div className="flex flex-col leading-none">
+            <div className="flex flex-col leading-none border-l border-border-primary/50 pl-2 lg:pl-4 py-0.5">
               <span 
-                className="font-black text-xl lg:text-2xl tracking-tighter transition-colors duration-500"
+                className="font-black text-lg lg:text-2xl tracking-tighter transition-colors duration-500"
                 style={{ color: isHeroMode ? '#ffffff' : 'var(--text-main)' }}
               >
                 Blitcon
               </span>
               <div className="flex items-center gap-1.5 mt-0.5">
-                <div className="w-1.5 h-[1px] bg-brand-accent/50" />
                 <span
-                  className="text-[10px] lg:text-[11px] font-black tracking-[0.4em] uppercase transition-colors duration-500 text-brand-accent"
+                  className="text-[8px] lg:text-[11px] font-black tracking-[0.3em] lg:tracking-[0.4em] uppercase transition-colors duration-500 text-brand-accent"
                 >
                   Infra
                 </span>
@@ -135,8 +134,11 @@ export default function Navbar() {
           </nav>
 
           {/* Actions */}
-          <div className="flex items-center gap-3">
-            <ThemeToggle />
+          <div className="flex items-center gap-2 lg:gap-3">
+            <div className="scale-90 lg:scale-100 origin-right">
+              <ThemeToggle />
+            </div>
+            
             <Link
               href="/contact"
               className="hidden lg:flex btn btn-primary text-[11px] py-2.5 px-6 rounded-sm shadow-brand hover:shadow-brand-lg transition-all duration-300"
@@ -145,25 +147,25 @@ export default function Navbar() {
               <ArrowUpRight className="w-3.5 h-3.5" />
             </Link>
 
-            {/* Mobile menu button */}
+            {/* Mobile menu button - Refined Circular Glass */}
             <button
               suppressHydrationWarning
               onClick={() => setMenuOpen(!menuOpen)}
-              className="lg:hidden w-10 h-10 flex items-center justify-center rounded-full transition-all duration-500 shadow-sm"
+              className="lg:hidden w-9 h-9 flex items-center justify-center rounded-full transition-all duration-500 glass hover:bg-white/10 dark:hover:bg-white/5 active:scale-90"
               style={{
-                backgroundColor: isHeroMode ? 'rgba(255, 255, 255, 0.1)' : 'var(--surface-card)',
-                border: isHeroMode ? '1px solid rgba(255, 255, 255, 0.2)' : '1px solid var(--border-primary)',
+                borderColor: isHeroMode ? 'rgba(255, 255, 255, 0.2)' : 'var(--border-primary)',
+                background: isHeroMode ? 'rgba(255, 255, 255, 0.08)' : 'var(--surface-glass)',
               }}
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             >
               <AnimatePresence mode="wait">
                 {menuOpen ? (
-                  <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                    <X className="w-4.5 h-4.5" style={{ color: isHeroMode ? '#ffffff' : 'var(--text-main)' }} />
+                  <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.3 }}>
+                    <X className="w-4 h-4" style={{ color: isHeroMode ? '#ffffff' : 'var(--text-main)' }} />
                   </motion.div>
                 ) : (
-                  <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                    <Menu className="w-4.5 h-4.5" style={{ color: isHeroMode ? '#ffffff' : 'var(--text-main)' }} />
+                  <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.3 }}>
+                    <Menu className="w-4 h-4" style={{ color: isHeroMode ? '#ffffff' : 'var(--text-main)' }} />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -202,58 +204,56 @@ export default function Navbar() {
               <X className="w-5 h-5 text-main transition-transform group-hover:rotate-90" />
             </button>
 
-            <nav className="container-fluid relative z-10 flex flex-col gap-2" aria-label="Mobile navigation">
+            <nav className="container-fluid relative z-10 flex flex-col pt-24" aria-label="Mobile navigation">
               <div
-                className="text-[10px] font-black tracking-[0.4em] uppercase mb-10 text-brand-accent flex items-center gap-4"
+                className="text-[10px] font-black tracking-[0.4em] uppercase mb-8 text-brand-accent flex items-center gap-4 px-2"
               >
                 <div className="w-8 h-px bg-brand-accent" />
-                Navigation
+                Index
               </div>
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.label}
-                  custom={i}
-                  variants={linkVariants}
-                  initial="closed"
-                  animate="open"
-                  className="overflow-hidden"
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="group flex items-center justify-between py-6 border-b border-border-primary transition-all duration-300"
+              
+              <div className="flex flex-col">
+                {navLinks.map((link, i) => (
+                  <motion.div
+                    key={link.label}
+                    custom={i}
+                    variants={linkVariants}
+                    initial="closed"
+                    animate="open"
                   >
-                    <div className="flex items-baseline gap-4">
-                      <span className="text-[11px] font-black text-brand-accent/40 font-mono">0{i + 1}</span>
-                      <span
-                        className="text-display-sm group-hover:text-brand-accent transition-all duration-300 text-main font-black group-hover:translate-x-2"
-                      >
-                        {link.label}
-                      </span>
-                    </div>
-                    <div className="w-10 h-10 rounded-full border border-border-primary flex items-center justify-center group-hover:bg-brand-accent group-hover:border-brand-accent transition-all duration-500">
-                      <ArrowUpRight
-                        className="w-5 h-5 transition-all duration-500 text-dim group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      />
-                    </div>
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link
+                      href={link.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="group flex items-center justify-between py-5 border-b border-border-primary transition-all duration-300 px-2"
+                    >
+                      <div className="flex items-baseline gap-4">
+                        <span className="text-[10px] font-black text-brand-accent/40 font-mono">0{i + 1}</span>
+                        <span
+                          className="text-display-sm group-hover:text-brand-accent transition-all duration-300 text-main font-black"
+                        >
+                          {link.label}
+                        </span>
+                      </div>
+                      <ArrowUpRight className="w-5 h-5 text-dim/30 group-hover:text-brand-accent transition-all duration-300" />
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
 
               <motion.div
                 custom={navLinks.length}
                 variants={linkVariants}
                 initial="closed"
                 animate="open"
-                className="mt-14"
+                className="mt-12 px-2"
               >
                 <Link
                   href="/contact"
                   onClick={() => setMenuOpen(false)}
-                  className="btn btn-primary w-full justify-center h-16 text-xs tracking-[0.2em]"
+                  className="btn btn-primary w-full justify-center h-16 text-xs tracking-[0.2em] rounded-sm"
                 >
                   Start a Project
-                  <ArrowUpRight className="w-4 h-4" />
+                  <ArrowUpRight className="w-4 h-4 ml-2" />
                 </Link>
               </motion.div>
             </nav>
