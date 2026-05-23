@@ -125,14 +125,14 @@ export default function Footer() {
             {/* Brand */}
             <div>
               <div className="flex items-center gap-3 mb-5">
-                <Image src="/logo.png" alt="Blitcon Infra" width={120} height={40} className="h-8 w-auto object-contain" />
+                <Image src="/assets/images/logo.png" alt="Blitcon Infra" width={120} height={40} className="h-8 w-auto object-contain" />
                 <div>
                   <div className="font-black text-base leading-none text-main">Blitcon</div>
                   <div className="text-[9px] font-black tracking-[0.3em] uppercase mt-0.5 text-brand-accent">Infra</div>
                 </div>
               </div>
               <p className="text-sm leading-relaxed mb-6 font-medium text-sub">
-                Premium infrastructure and construction — built with precision, delivered with integrity, designed to last generations.
+                Premium infrastructure and construction - built with precision, delivered with integrity, designed to last generations.
               </p>
               <div className="flex gap-2">
                 {socials.map(({ Icon, href, label }) => (

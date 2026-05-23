@@ -11,7 +11,7 @@ const services = [
     number: '01',
     title: 'Residential Construction',
     tagline: 'Homes Crafted for Life',
-    description: 'From luxury villas to premium apartments, we engineer residential spaces that blend comfort, functionality, and lasting beauty. Every detail is calibrated for how modern families live.',
+    description: 'We design and build homes that reflect your lifestyle and preferences, ensuring a perfect balance of functionality and aesthetics.',
     features: ['Custom Villa Design', 'Premium Apartments', 'Structural Excellence', 'Smart Home Integration'],
   },
   {
@@ -19,7 +19,7 @@ const services = [
     number: '02',
     title: 'Commercial Construction',
     tagline: 'Spaces That Drive Business',
-    description: 'We build commercial environments that command presence — from corporate towers and retail complexes to industrial facilities engineered for maximum operational efficiency.',
+    description: 'From office spaces to retail establishments, we deliver top-notch commercial buildings that meet modern business requirements and standards.',
     features: ['Corporate Offices', 'Retail Complexes', 'Industrial Facilities', 'Mixed-Use Developments'],
   },
   {
@@ -27,15 +27,15 @@ const services = [
     number: '03',
     title: 'Apartment Development',
     tagline: 'Urban Living, Elevated',
-    description: 'High-density residential developments that don\'t compromise on quality. We design apartment complexes as complete ecosystems — with amenities, community spaces, and architectural identity.',
+    description: 'We specialize in constructing state-of-the-art apartment complexes that combine comfort, style, and practicality for modern living.',
     features: ['High-Rise Towers', 'Amenity Design', 'Landscape Planning', 'Community Spaces'],
   },
   {
     id: 'interior',
     number: '04',
-    title: 'Interior Design',
+    title: 'Home Interior',
     tagline: 'From Shell to Sanctuary',
-    description: 'Our interior design studio transforms bare structures into curated living and working environments. We bring material intelligence, spatial storytelling, and design precision to every room.',
+    description: 'Our expertise extends to interior design and construction, creating spaces that are visually appealing, functional, and personalized to your needs.',
     features: ['Residential Interiors', 'Commercial Fit-Outs', 'Material Selection', '3D Visualization'],
   },
   {
@@ -43,8 +43,16 @@ const services = [
     number: '05',
     title: 'Township Development',
     tagline: 'Building Communities',
-    description: 'Complete township ecosystems — integrating residential, commercial, recreational, and infrastructure components into self-sustaining urban environments built for the long term.',
+    description: 'We develop and transform open land ventures into thriving residential or commercial communities with robust infrastructure.',
     features: ['Master Planning', 'Infrastructure Design', 'Green Spaces', 'Utility Systems'],
+  },
+  {
+    id: 'renovation',
+    number: '06',
+    title: 'Home Renovation & Remodeling',
+    tagline: 'Reimagine Your Space',
+    description: 'Breathe new life into your space with expert renovation and remodeling for enhanced functionality and modern aesthetics.',
+    features: ['Complete Renovation', 'Structural Remodeling', 'Modern Finishes', 'Space Optimization'],
   },
 ]
 
@@ -89,7 +97,8 @@ function ServiceCard({
               {service.id === 'residential' ? '⌂' :
                service.id === 'commercial' ? '⬡' :
                service.id === 'apartment' ? '⬒' :
-               service.id === 'interior' ? '◎' : '⬡'}
+               service.id === 'interior' ? '◎' :
+               service.id === 'township' ? '◫' : '⟳'}
             </div>
           </div>
           <motion.div

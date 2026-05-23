@@ -22,11 +22,13 @@ export default function PageHero({ title, subtitle, description, image, breadcru
         animate={{ scale: 1 }}
         transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
         className="absolute inset-0 z-0"
+        style={{ position: 'absolute', width: '100%', height: '100%' }}
       >
         <Image
           src={image}
           alt={title}
           fill
+          sizes="100vw"
           priority
           className="object-cover object-center scale-[1.02]"
         />

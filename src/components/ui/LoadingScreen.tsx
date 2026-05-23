@@ -58,7 +58,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
           >
             <div className="relative">
               <Image
-                src="/logo.png"
+                src="/assets/images/logo.png"
                 alt="Blitcon Infra"
                 width={120}
                 height={40}

@@ -36,7 +36,7 @@ export default function BackToTop() {
             background: 'var(--brand-accent)',
             boxShadow: 'var(--shadow-brand-lg)',
             border: 'none',
-            cursor: 'none',
+            cursor: 'pointer',
           }}
           aria-label="Back to top"
         >

@@ -41,7 +41,7 @@ export default function AboutPage() {
                       Our journey began with a vision to deliver exceptional quality, innovation, and trust to every project we undertake. From crafting dream homes to creating thriving commercial spaces and modern apartments, we have built a reputation for excellence, reliability, and customer satisfaction.
                     </p>
                     <p>
-                      At the heart of our success lies a passionate team of professionals who bring unparalleled expertise, creativity, and precision to every project. We take pride in transforming spaces into functional, aesthetically pleasing, and sustainable environments tailored to our clients’ unique needs.
+                      At the heart of our success lies a passionate team of professionals who bring unparalleled expertise, creativity, and precision to every project. We take pride in transforming spaces into functional, aesthetically pleasing, and sustainable environments tailored to our clients' unique needs.
                     </p>
                   </div>
 
@@ -65,6 +65,7 @@ export default function AboutPage() {
                       src="/assets/images/about_legacy.png"
                       alt="Blitcon Construction Quality"
                       fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
                       className="object-cover transition-transform duration-1000 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-brand-primary/10 mix-blend-multiply transition-opacity group-hover:opacity-0" />

@@ -91,7 +91,7 @@ function ProjectCard({ project, index, onClick }: { project: typeof projects[0];
           transform: hovered ? 'scale(1.08)' : 'scale(1)',
           filter: hovered ? 'brightness(0.7)' : 'brightness(0.85)',
         }}
-        sizes="(max-width: 768px) 100vw, 50vw"
+        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         placeholder="empty"
       />
       {/* Always-on cinematic gradient */}
@@ -259,7 +259,7 @@ export default function ProjectsSection() {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="relative h-64">
-                <Image src={selectedProject.image} alt={selectedProject.title} fill className="object-cover" />
+                <Image src={selectedProject.image} alt={selectedProject.title} fill sizes="100vw" className="object-cover" />
                 <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(15,23,42,0.6) 0%, transparent 60%)' }} />
               </div>
               <button

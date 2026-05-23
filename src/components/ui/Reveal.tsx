@@ -48,6 +48,7 @@ export default function Reveal({
         initial="hidden"
         animate={mainControls}
         transition={{ duration, delay, ease: [0.16, 1, 0.3, 1] }}
+        style={{ willChange: 'transform, opacity' }}
       >
         {children}
       </motion.div>

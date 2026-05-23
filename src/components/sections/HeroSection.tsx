@@ -23,76 +23,7 @@ export default function HeroSection() {
   const opacity = useTransform(scrollY, [0, 600], [1, 0])
   const watermarkOpacity = useTransform(scrollY, [0, 600], [0.04, 0])
 
-  // Minimal particle canvas — light-mode friendly
-  useEffect(() => {
-    if (typeof window === 'undefined' || window.innerWidth < 768) return
-
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    const resize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-    }
-    resize()
-    window.addEventListener('resize', resize)
-
-    // Very subtle, small dots — not visible in light mode unless intentional
-    type Particle = { x: number; y: number; vx: number; vy: number; size: number; opacity: number }
-    const particles: Particle[] = []
-
-    for (let i = 0; i < 50; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.25,
-        vy: (Math.random() - 0.5) * 0.25,
-        size: Math.random() * 1.2 + 0.3,
-        opacity: Math.random() * 0.25 + 0.05,
-      })
-    }
-
-    let animId: number
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      particles.forEach((p, i) => {
-        p.x += p.vx
-        p.y += p.vy
-        p.vx *= 0.999
-        p.vy *= 0.999
-        if (p.x < 0) p.x = canvas.width
-        if (p.x > canvas.width) p.x = 0
-        if (p.y < 0) p.y = canvas.height
-        if (p.y > canvas.height) p.y = 0
-
-        ctx.beginPath()
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(30, 58, 110, ${p.opacity})`
-        ctx.fill()
-
-        for (let j = i + 1; j < particles.length; j++) {
-          const q = particles[j]
-          const d = Math.sqrt((p.x - q.x) ** 2 + (p.y - q.y) ** 2)
-          if (d < 100) {
-            ctx.beginPath()
-            ctx.moveTo(p.x, p.y)
-            ctx.lineTo(q.x, q.y)
-            ctx.strokeStyle = `rgba(30, 64, 175, ${0.06 * (1 - d / 100)})`
-            ctx.lineWidth = 0.4
-            ctx.stroke()
-          }
-        }
-      })
-      animId = requestAnimationFrame(draw)
-    }
-    draw()
-    return () => {
-      cancelAnimationFrame(animId)
-      window.removeEventListener('resize', resize)
-    }
-  }, [])
+  // Particle canvas removed for performance optimization
 
   const containerVariants = {
     hidden: {},
@@ -114,31 +45,24 @@ export default function HeroSection() {
       <motion.div style={{ y: y1 }} className="absolute inset-0 w-full h-full pointer-events-none">
         <Image
           src="/assets/images/hero_bg.png"
-          alt="Blitcon Infra — Premium Architecture"
+          alt="Modern Architectural Building"
           fill
+          sizes="100vw"
           priority
           className="object-cover object-center"
-          style={{ opacity: 0.55 }}
+          style={{ opacity: 0.85 }}
         />
-        {/* Left-side text protection gradient */}
+        {/* Deep cinematic dark overlay for premium real-estate look */}
         <div className="absolute inset-0" style={{
-          background: 'linear-gradient(105deg, var(--bg-primary) 30%, rgba(249,247,244,0.75) 55%, rgba(249,247,244,0.15) 75%, transparent 100%)',
+          background: 'linear-gradient(to right, rgba(4,10,22,0.92) 0%, rgba(4,10,22,0.75) 45%, rgba(4,10,22,0.45) 70%, rgba(4,10,22,0.25) 100%)',
         }} />
         {/* Bottom fade */}
         <div className="absolute inset-0" style={{
-          background: 'linear-gradient(to bottom, transparent 60%, var(--bg-primary) 100%)',
+          background: 'linear-gradient(to bottom, rgba(4,10,22,0.15) 0%, transparent 30%, rgba(4,10,22,0.6) 85%, rgba(4,10,22,0.95) 100%)',
         }} />
-        {/* Subtle dark overlay for dark mode only */}
-        <div className="absolute inset-0 dark:bg-black/40" />
       </motion.div>
 
-      {/* Particle canvas */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        style={{ opacity: 0.4 }}
-        aria-hidden="true"
-      />
+
 
       {/* Arch grid */}
       <div className="arch-grid absolute inset-0 opacity-30" aria-hidden="true" />
@@ -169,36 +93,61 @@ export default function HeroSection() {
           {/* Eyebrow */}
           <motion.div variants={itemVariants} className="flex items-center gap-3 mb-10">
             <div className="glow-dot" />
-            <span className="text-eyebrow">Premium Infrastructure Since 2019</span>
+            <span className="text-eyebrow" style={{ color: 'rgba(255,255,255,0.7)' }}>Premium Infrastructure Since 2019</span>
             <div
               className="flex-1 h-px max-w-[80px]"
               style={{ background: 'linear-gradient(to right, var(--brand-accent), transparent)', opacity: 0.6 }}
             />
           </motion.div>
 
-          {/* Headline — balanced, not oversized */}
+          {/* Headline — cinematic three-line treatment */}
           <motion.div variants={itemVariants}>
-            <h1 className="text-display-xl mb-3 leading-[0.93]">
-              Building
+            <h1
+              className="font-black leading-[0.9] mb-2"
+              style={{
+                fontSize: 'clamp(2.8rem, 7.5vw, 6.5rem)',
+                letterSpacing: '-0.02em',
+                color: '#ffffff',
+              }}
+            >
+              YOUR DREAM
             </h1>
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <h1 className="text-display-xl mb-3 leading-[0.93]">
-              <span className="gradient-text-brand">Tomorrow's</span>
+            <h1
+              className="font-black leading-[0.9] mb-2"
+              style={{
+                fontSize: 'clamp(2.8rem, 7.5vw, 6.5rem)',
+                letterSpacing: '-0.02em',
+                background: 'linear-gradient(135deg, #c9a84c 0%, #f5d98b 50%, #c9a84c 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              OUR EXPERTISE
             </h1>
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <h1 className="text-display-xl mb-4 md:mb-10 leading-[0.93] text-main">
-              Infrastructure.
+            <h1
+              className="font-black leading-[0.9] mb-8 md:mb-12"
+              style={{
+                fontSize: 'clamp(2.8rem, 7.5vw, 6.5rem)',
+                letterSpacing: '-0.02em',
+                color: 'rgba(255,255,255,0.92)',
+              }}
+            >
+              PERFECTLY BUILT
             </h1>
           </motion.div>
 
           {/* Tagline */}
           <motion.p
             variants={itemVariants}
-            className="text-base md:text-lg max-w-md leading-relaxed mb-10 font-normal text-sub"
+            className="text-base md:text-lg max-w-md leading-relaxed mb-10 font-medium"
+            style={{ color: 'rgba(255,255,255,0.7)' }}
           >
             Where engineering precision meets architectural vision.
             Blitcon Infra delivers spaces that endure, inspire, and transform communities across India.
@@ -206,11 +155,29 @@ export default function HeroSection() {
 
           {/* CTAs */}
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 mb-20">
-            <Link href="#projects" className="btn btn-primary group w-full sm:w-auto h-16 sm:h-auto">
+            <Link
+              href="#projects"
+              className="group flex items-center justify-center gap-2 px-8 py-4 font-bold text-sm tracking-widest uppercase transition-all duration-300"
+              style={{
+                background: 'linear-gradient(135deg, #c9a84c 0%, #e8c067 100%)',
+                color: '#0a0a0a',
+                borderRadius: '2px',
+              }}
+            >
               Explore Projects
               <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
-            <Link href="#contact" className="btn btn-outline group w-full sm:w-auto h-16 sm:h-auto">
+            <Link
+              href="/contact"
+              className="group flex items-center justify-center gap-2 px-8 py-4 font-bold text-sm tracking-widest uppercase transition-all duration-300"
+              style={{
+                background: 'rgba(255,255,255,0.08)',
+                color: '#ffffff',
+                border: '1px solid rgba(255,255,255,0.25)',
+                borderRadius: '2px',
+                backdropFilter: 'blur(8px)',
+              }}
+            >
               Start a Project
             </Link>
           </motion.div>
@@ -218,17 +185,20 @@ export default function HeroSection() {
           {/* Specialisms strip */}
           <motion.div
             variants={itemVariants}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8 border-t border-border-primary"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8"
+            style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}
           >
             {specialisms.map((s) => (
               <div key={s.value} className="group cursor-default">
                 <div
-                  className="text-sm font-black mb-0.5 transition-colors duration-300 group-hover:text-brand-600 text-brand-accent"
+                  className="text-sm font-black mb-0.5 transition-colors duration-300"
+                  style={{ color: '#c9a84c' }}
                 >
                   {s.value}
                 </div>
                 <div
-                  className="text-[10px] font-bold tracking-widest uppercase text-dim"
+                  className="text-[10px] font-bold tracking-widest uppercase"
+                  style={{ color: 'rgba(255,255,255,0.5)' }}
                 >
                   {s.label}
                 </div>

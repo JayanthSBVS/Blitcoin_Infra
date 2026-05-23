@@ -52,20 +52,12 @@ export default function Navbar() {
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
-  // Determine if the navbar should be in "Hero Mode" (Transparent bg)
-  const isHeroMode = !isScrolled && !menuOpen
   const isDark = mounted && theme === 'dark'
   const isHomePage = pathname === '/'
   
-  // Adaptive color logic for visibility
-  // Internal pages in light theme should start with WHITE for cinematic harmony
-  const textColor = isHeroMode 
-    ? (isDark ? '#ffffff' : (isHomePage ? 'var(--text-main)' : '#ffffff')) 
-    : 'var(--text-main)'
-
-  const secondaryTextColor = isHeroMode
-    ? (isDark ? '#ffffff' : (isHomePage ? 'var(--text-secondary)' : '#ffffff'))
-    : 'var(--text-secondary)'
+  // Clean stable navbar logic
+  const textColor = '#1a1a1a'
+  const secondaryTextColor = '#475569'
 
   return (
     <>
@@ -73,51 +65,26 @@ export default function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-        className="fixed top-0 left-0 right-0 z-[9000] transition-all duration-500"
-        style={isHeroMode ? {
-          padding: 'clamp(12px, 3vw, 22px) 0',
-          background: 'transparent',
-        } : {
-          padding: 'clamp(8px, 2vw, 12px) 0',
-          backgroundColor: 'var(--surface-glass)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
-          borderBottom: '1px solid var(--border-primary)',
-          boxShadow: 'var(--shadow-md)',
+        className="fixed top-0 left-0 right-0 z-[9000]"
+        style={{
+          padding: '4px 0',
+          backgroundColor: '#ffffff',
+          borderBottom: '1px solid #e2e8f0',
+          boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
         }}
       >
         <div className="container-fluid flex items-center justify-between gap-4">
           {/* Logo & Brand Identity */}
-          <Link href="/" className="flex items-center gap-2 lg:gap-4 group shrink-0" aria-label="Blitcon Infra Home">
-            <motion.div
-              className="relative flex-shrink-0"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <Image
-                src="/logo.png"
-                alt="Blitcon Infra Logo Symbol"
-                width={120}
-                height={40}
-                className="w-auto h-7 lg:h-10 object-contain drop-shadow-sm transition-all duration-300"
-              />
-            </motion.div>
-            
-            <div className="flex flex-col leading-none border-l border-border-primary/50 pl-2 lg:pl-4 py-0.5">
-              <span 
-                className="font-black text-lg lg:text-2xl tracking-tighter transition-colors duration-500"
-                style={{ color: textColor }}
-              >
-                Blitcon
-              </span>
-              <div className="flex items-center gap-1.5 mt-0.5">
-                <span
-                  className="text-[8px] lg:text-[11px] font-black tracking-[0.3em] lg:tracking-[0.4em] uppercase transition-colors duration-500 text-brand-accent"
-                >
-                  Infra
-                </span>
-              </div>
-            </div>
+          <Link href="/" className="flex items-center group shrink-0" aria-label="Blitcon Infra Home">
+            <Image
+              src="/assets/images/logo.png"
+              alt="Blitcon Infra"
+              width={120}
+              height={30}
+              priority
+              className="w-auto h-5 lg:h-6 object-contain"
+              style={{ width: 'auto', height: 'auto', imageRendering: 'auto' }}
+            />
           </Link>
 
           {/* Desktop Nav */}
@@ -163,10 +130,11 @@ export default function Navbar() {
             <button
               suppressHydrationWarning
               onClick={() => setMenuOpen(!menuOpen)}
-              className="lg:hidden w-9 h-9 flex items-center justify-center rounded-full transition-all duration-500 glass hover:bg-white/10 dark:hover:bg-white/5 active:scale-90"
+              className="lg:hidden w-9 h-9 flex items-center justify-center rounded-full transition-all duration-500 hover:bg-black/5 active:scale-90"
               style={{
-                borderColor: isHeroMode ? 'rgba(255, 255, 255, 0.2)' : 'var(--border-primary)',
-                background: isHeroMode ? 'rgba(255, 255, 255, 0.08)' : 'var(--surface-glass)',
+                borderColor: 'var(--border-primary)',
+                background: '#ffffff',
+                border: '1px solid #e2e8f0'
               }}
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             >

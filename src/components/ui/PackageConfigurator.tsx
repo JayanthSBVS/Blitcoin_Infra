@@ -20,87 +20,104 @@ interface PackageCategory {
 
 const packageData: PackageCategory[] = [
   {
-    name: 'Design & Drawings',
+    name: 'Designs & Drawings',
     icon: '📐',
     items: [
-      { label: '2D Floor Plan', standard: 'Included', premium: 'Included', luxury: 'Included' },
+      { label: 'Floor Plans', standard: 'Included', premium: 'Included', luxury: 'Included' },
       { label: 'Structural Design', standard: 'Included', premium: 'Included', luxury: 'Included' },
       { label: '3D Elevation', standard: 'Included', premium: 'Included', luxury: 'Included' },
       { label: 'Electrical Drawings', standard: 'Included', premium: 'Included', luxury: 'Included' },
       { label: 'Plumbing Drawings', standard: 'Included', premium: 'Included', luxury: 'Included' },
-      { label: 'Contour Survey', standard: 'Included', premium: 'Included', luxury: 'Included' },
+      { label: 'Furniture Plan', standard: '-', premium: '-', luxury: 'Included' },
+      { label: 'Landscape Design', standard: '-', premium: '-', luxury: 'Included' },
     ]
   },
   {
-    name: 'Civil Works',
+    name: 'Structure',
     icon: '🏗️',
     items: [
-      { label: 'Steel (TMT)', standard: 'Radha / Shree / Kamdhenu / JSW', premium: 'Vizag / JSW TMT', luxury: 'Tata / Vizag TMT' },
-      { label: 'Cement', standard: 'Bharati / Zuari / Equivalent', premium: 'Ultratech / Bharati / Zuari', luxury: 'Ultratech / Birla A1' },
-      { label: 'Red Bricks', standard: 'Standard (Rs. 7/- each)', premium: 'Premium (Rs. 9/- each)', luxury: 'Luxury (Rs. 11/- each)' },
-      { label: 'RCC Design Mix', standard: 'M20', premium: 'M20', luxury: 'M20' },
-      { label: 'Ceiling Height', standard: '10\' 6" (Finished Floor)', premium: '10\' 6" (Finished Floor)', luxury: '10\' 6" (Finished Floor)' },
       { label: 'Aggregates', standard: '20mm & 40mm', premium: '20mm & 40mm', luxury: '20mm & 40mm' },
+      { label: 'Brick Work', standard: 'Standard Red Bricks', premium: 'Standard Red Bricks', luxury: 'Standard Red Bricks' },
+      { label: 'Exterior Walls', standard: '9 inch', premium: '9 inch', luxury: '9 inch' },
+      { label: 'Interior Walls', standard: '4 inch', premium: '4 inch', luxury: '4 inch' },
+      { label: 'Sand', standard: 'Only River Sand', premium: 'Only River Sand', luxury: 'Only River Sand' },
+      { label: 'RCC Design Mix', standard: 'As per structural engineer recommendation', premium: 'Structural engineer recommendation', luxury: 'Structural design recommendation' },
+      { label: 'Ceiling Height', standard: '10 feet', premium: '10ft 6in', luxury: '11 feet' },
+      { label: 'Steel', standard: 'Radha TMT / Shree TMT / JaiRai TMT / Kamdhenu TMT', premium: 'Vizag TMT / JSW TMT', luxury: 'Vizag TMT / Jindal TMT' },
+      { label: 'Cement', standard: 'Bharati / Zuari / Nagarjuna', premium: 'UltraTech / ACC / Ambuja', luxury: 'UltraTech / ACC / Ambuja' },
+      { label: 'Waterproofing', standard: 'Dr Fixit / Fosroc', premium: 'Dr Fixit / Fosroc', luxury: 'Dr Fixit / Fosroc' },
     ]
   },
   {
-    name: 'Kitchen & Utility',
+    name: 'Kitchen',
     icon: '🍳',
     items: [
-      { label: 'Wall Tiles (2\')', standard: 'Ceramic (Upto Rs. 60/sft)', premium: 'Ceramic (Upto Rs. 70/sft)', luxury: 'Ceramic (Upto Rs. 80/sft)' },
-      { label: 'Kitchen Sink', standard: 'SS Single (Worth Rs. 6000)', premium: 'SS Single (Worth Rs. 7000)', luxury: 'SS Single (Worth Rs. 8000)' },
-      { label: 'Sink Faucet', standard: 'ISI Marked (Upto Rs. 2000)', premium: 'ISI Marked (Upto Rs. 3000)', luxury: 'ISI Marked (Upto Rs. 5000)' },
-      { label: 'Countertop', standard: 'Granite (Upto Rs. 120/sft)', premium: 'Granite (Upto Rs. 160/sft)', luxury: 'Granite (Upto Rs. 180/sft)' },
+      { label: 'Granite', standard: 'Up to Rs. 90/sft', premium: 'Up to Rs. 110/sft', luxury: 'Up to Rs. 130/sft' },
+      { label: 'Wall Tiles', standard: 'Up to Rs. 50/sft', premium: 'Up to Rs. 60/sft', luxury: 'Up to Rs. 70/sft' },
+      { label: 'Faucet', standard: 'Up to Rs. 2000', premium: 'Up to Rs. 2500', luxury: 'Up to Rs. 3000' },
+      { label: 'Sink', standard: 'Rs. 5000 (Nirali or equivalent)', premium: 'Rs. 6000 (Nirali / Futura / Crysil)', luxury: 'Rs. 6000 (Nirali / Futura / Crysil)' },
     ]
   },
   {
-    name: 'Bathrooms',
+    name: 'Bathroom',
     icon: '🚿',
     items: [
-      { label: 'Wall Tiles (7\')', standard: 'Ceramic (Upto Rs. 60/sft)', premium: 'Ceramic (Upto Rs. 70/sft)', luxury: 'Ceramic (Upto Rs. 80/sft)' },
-      { label: 'Sanitary & CP', standard: 'Upto Rs. 50k / 1000 sft', premium: 'Upto Rs. 60k / 1000 sft', luxury: 'Upto Rs. 70k / 1000 sft' },
-      { label: 'CPVC Pipes', standard: 'Ashirwad / Sudhakar', premium: 'Ashirwad / Sudhakar', luxury: 'Ashirwad / Sudhakar' },
-      { label: 'Accessories', standard: 'Worth Rs. 5000 / Bath', premium: 'Worth Rs. 6000 / Bath', luxury: 'Worth Rs. 7000 / Bath' },
-      { label: 'Bathroom Doors', standard: 'WPC / Waterproof Flush', premium: 'WPC / Waterproof Flush', luxury: 'WPC / Waterproof Flush' },
+      { label: 'Wall Tiles', standard: 'Up to Rs. 50/sft', premium: 'Up to Rs. 60/sft', luxury: 'Up to Rs. 70/sft' },
+      { label: 'Sanitary & CP Fittings', standard: 'Up to Rs. 40000 per 1000 sft', premium: 'Up to Rs. 50000 per 1000 sft', luxury: 'Up to Rs. 60000 per 1000 sft' },
+      { label: 'CPVC Pipe', standard: 'Sudhakar', premium: 'Ashirwad', luxury: 'Ashirwad / Supreme' },
+      { label: 'Bathroom Doors', standard: 'WPC frames with waterproof flush doors', premium: 'WPC waterproof doors', luxury: 'WPC waterproof doors' },
     ]
   },
   {
     name: 'Doors & Windows',
     icon: '🚪',
     items: [
-      { label: 'Main Door', standard: 'Teak (Rs. 25k allowance)', premium: 'Teak (Rs. 35k allowance)', luxury: 'Teak (Rs. 40k allowance)' },
-      { label: 'Windows (UPVC)', standard: '3 Track (Rs. 450/sft)', premium: '3 Track (Rs. 500/sft)', luxury: '3 Track (Rs. 600/sft)' },
-      { label: 'Internal Doors', standard: 'Flush / Membrane (Rs. 10k)', premium: 'Flush / Membrane (Rs. 11k)', luxury: 'Flush / Membrane (Rs. 11k)' },
+      { label: 'Main Door', standard: 'Teak door with teak frame 5"x3"', premium: 'Teak', luxury: '5"x3.5"' },
+      { label: 'Main Door Size', standard: '7ft x 3ft 6in', premium: '7ft x 3ft 6in', luxury: '8ft x 3ft 6in' },
+      { label: 'Main Door Worth', standard: 'Rs. 25000 including fixtures', premium: 'Rs. 40000', luxury: 'Rs. 50000' },
+      { label: 'Windows', standard: 'UPVC with mesh shutters (3 track)', premium: 'UPVC mesh shutters', luxury: 'UPVC mesh shutters' },
+      { label: 'Window Cost', standard: 'Up to Rs. 400/sft', premium: 'Up to Rs. 450/sft', luxury: 'Up to Rs. 500/sft' },
+      { label: 'Internal Doors', standard: 'Laminated flush doors up to Rs. 8000', premium: 'Up to Rs. 9000', luxury: 'Up to Rs. 11000' },
+      { label: 'Door Frames', standard: 'Sal Wood / WPC', premium: 'African Teak / WPC', luxury: 'African Teak 4"x3" / WPC' },
     ]
   },
   {
-    name: 'Painting & Finishes',
+    name: 'Painting',
     icon: '🎨',
     items: [
-      { label: 'Internal Paint', standard: 'Birla Putty + Asian Apcolite', premium: 'Birla Putty + Asian Apcolite', luxury: 'Birla Putty + Asian Royal' },
-      { label: 'External Paint', standard: 'Asian Ace Emulsion', premium: 'Asian Apex Emulsion', luxury: 'Asian Apex Emulsion' },
+      { label: 'Interior', standard: 'JK Wall Putty + Asian Premium Emulsion', premium: 'Birla Putty + Apcolite Premium Emulsion', luxury: 'Birla Putty + Asian Royal Emulsion' },
+      { label: 'Exterior', standard: 'Asian Primer + Ace Exterior Emulsion', premium: 'Asian Primer + Apex Exterior Emulsion', luxury: 'Asian Primer + Apex Ultima Weatherproof' },
     ]
   },
   {
     name: 'Flooring',
     icon: '⬛',
     items: [
-      { label: 'Living & Dining', standard: 'Tiles (Upto Rs. 80/sft)', premium: 'Tiles/Granite (Rs. 90/sft)', luxury: 'Tiles/Granite (Rs. 100/sft)' },
-      { label: 'Rooms & Kitchen', standard: 'Tiles (Upto Rs. 60/sft)', premium: 'Tiles (Upto Rs. 65/sft)', luxury: 'Tiles (Upto Rs. 75/sft)' },
-      { label: 'Staircase', standard: 'Granite (Upto Rs. 70/sft)', premium: 'Granite (Upto Rs. 80/sft)', luxury: 'Granite (Upto Rs. 90/sft)' },
-      { label: 'Parking Tiles', standard: 'Anti-skid (Rs. 50/sft)', premium: 'Anti-skid (Rs. 60/sft)', luxury: 'Anti-skid (Rs. 65/sft)' },
+      { label: 'Living/Dining', standard: 'Up to Rs. 60/sft', premium: 'Tiles or Granite up to Rs. 90/sft', luxury: 'Tiles or Granite or Marble up to Rs. 110/sft' },
+      { label: 'Bedroom/Kitchen', standard: 'Up to Rs. 50/sft', premium: 'Up to Rs. 70/sft', luxury: 'Up to Rs. 90/sft' },
+      { label: 'Balcony/Open Area', standard: 'Anti-skid up to Rs. 40/sft', premium: 'Anti-skid up to Rs. 50/sft', luxury: 'Anti-skid up to Rs. 70/sft' },
+      { label: 'Parking Tiles', standard: 'Up to Rs. 50/sft', premium: 'Up to Rs. 50/sft', luxury: 'Up to Rs. 60/sft' },
+      { label: 'Staircase', standard: 'Sadarahalli Granite up to Rs. 70/sft', premium: 'Sadarahalli Granite up to Rs. 80/sft', luxury: 'Sadarahalli Granite up to Rs. 90/sft' },
     ]
   },
   {
-    name: 'Electrical & Others',
+    name: 'Electrical',
     icon: '⚡',
     items: [
       { label: 'Wires', standard: 'Finolex / Polycab', premium: 'Finolex / Polycab', luxury: 'Finolex / Polycab' },
-      { label: 'Switches', standard: 'Anchor', premium: 'Anchor Roma', luxury: 'Anchor Roma' },
-      { label: 'Overhead Tank', standard: 'Sintex 2-Layer 1500L', premium: 'Sintex 2-Layer 1500L', luxury: 'Sintex 2-Layer 1500L' },
-      { label: 'Underground Sump', standard: '6000 Litres', premium: '6000 Litres', luxury: '6000 Litres' },
-      { label: 'Staircase Railing', standard: 'MS Railing', premium: 'MS Railing', luxury: 'MS Railing' },
-      { label: 'Puja Space', standard: 'Marble (Upto Rs. 190/sft)', premium: 'Marble (Upto Rs. 200/sft)', luxury: 'Marble (Upto Rs. 210/sft)' },
+      { label: 'Switches', standard: 'Anchor Penta', premium: 'Anchor Roma / Gold Medal', luxury: 'Gold Medal / Legrand' },
+      { label: 'DB & MCB', standard: 'Legrand', premium: 'Legrand', luxury: 'Legrand' },
+    ]
+  },
+  {
+    name: 'Miscellaneous',
+    icon: '✨',
+    items: [
+      { label: 'Overhead Tank', standard: 'Sintex Double Layer 1500L', premium: '2000L', luxury: '2500L' },
+      { label: 'Underground Sump', standard: '6000L', premium: '7000L', luxury: '7500L' },
+      { label: 'Staircase Railing', standard: 'SS Railing', premium: 'SS Railing', luxury: 'SS railing with glass' },
+      { label: 'Window Grills', standard: 'MS grills with enamel paint Rs. 110/sft', premium: 'MS grills with enamel paint Rs. 110/sft', luxury: 'MS grills with enamel paint Rs. 110/sft' },
+      { label: 'False Ceiling', standard: '-', premium: '-', luxury: 'Included' },
     ]
   }
 ]
@@ -254,7 +271,7 @@ export default function PackageConfigurator() {
                   <ShieldCheck className="w-5 h-5 text-brand-accent" />
                 </div>
                 <h3 className="text-xl font-black text-main">Standard</h3>
-                <span className="text-[11px] font-bold text-brand-accent uppercase tracking-widest">Rs. 1,600 / sft</span>
+                <span className="text-[11px] font-bold text-brand-accent uppercase tracking-widest">Rs. 1850 / sft</span>
               </div>
             </div>
             <div className="col-span-3 px-6 text-center border-x border-border-secondary">
@@ -263,7 +280,7 @@ export default function PackageConfigurator() {
                   <Gem className="w-5 h-5 text-brand-accent" />
                 </div>
                 <h3 className="text-xl font-black text-main">Premium</h3>
-                <span className="text-[11px] font-bold text-brand-accent uppercase tracking-widest">Rs. 1,850 / sft</span>
+                <span className="text-[11px] font-bold text-brand-accent uppercase tracking-widest">Rs. 2000 / sft</span>
               </div>
             </div>
             <div className="col-span-3 px-6 text-center">
@@ -272,7 +289,7 @@ export default function PackageConfigurator() {
                   <Crown className="w-5 h-5 text-brand-accent" />
                 </div>
                 <h3 className="text-xl font-black text-main">Luxury</h3>
-                <span className="text-[11px] font-bold text-brand-accent uppercase tracking-widest">Rs. 2,100 / sft</span>
+                <span className="text-[11px] font-bold text-brand-accent uppercase tracking-widest">Rs. 2300 / sft</span>
               </div>
             </div>
           </div>
