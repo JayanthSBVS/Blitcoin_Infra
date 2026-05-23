@@ -4,40 +4,130 @@ import { useState } from 'react'
 import PageHero from '@/components/ui/PageHero'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { Phone, Mail, MapPin, MessageSquare, Send, CheckCircle2, ChevronDown, Building2, Map, ShieldCheck, Clock } from 'lucide-react'
+import { Phone, Mail, MapPin, MessageSquare, Send, CheckCircle2, ChevronDown, Building2, Map, ShieldCheck, Clock, AlertCircle, Loader2 } from 'lucide-react'
 import Footer from '@/components/layout/Footer'
 import PageTransition from '@/components/ui/PageTransition'
 import Reveal from '@/components/ui/Reveal'
 
+const WHATSAPP_NUMBER = '917997696688'
+
+type FormValues = {
+  name: string
+  email: string
+  phone: string
+  city: string
+  service: string
+  message: string
+}
+
+type FormErrors = Partial<Record<keyof FormValues, string>>
+
+const SERVICE_LABELS: Record<string, string> = {
+  residential: 'Residential Construction',
+  commercial: 'Commercial Construction',
+  apartment: 'Apartment Development',
+  interior: 'Interior Design',
+  township: 'Township Development',
+  renovation: 'Home Renovation',
+}
+
+function buildWhatsAppMessage(data: FormValues): string {
+  const serviceLabel = SERVICE_LABELS[data.service] || data.service || 'Not specified'
+  const cityLabel = data.city.trim() || 'Not specified'
+
+  return [
+    '🏗️ *New Blitcon Infra Lead*',
+    '',
+    '👤 *Name:*',
+    data.name,
+    '',
+    '📞 *Phone:*',
+    data.phone,
+    '',
+    '📧 *Email:*',
+    data.email,
+    '',
+    '📍 *City:*',
+    cityLabel,
+    '',
+    '🏠 *Service:*',
+    serviceLabel,
+    '',
+    '💬 *Message:*',
+    data.message,
+    '',
+    '─────────────────────',
+    '📅 Received via Blitcon Infra Website',
+  ].join('\n')
+}
+
+function validateForm(data: FormValues): FormErrors {
+  const errors: FormErrors = {}
+  if (!data.name.trim()) errors.name = 'Full name is required'
+  if (!data.email.trim()) {
+    errors.email = 'Email address is required'
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+    errors.email = 'Enter a valid email address'
+  }
+  if (!data.phone.trim()) {
+    errors.phone = 'Phone number is required'
+  } else if (!/^[+\d][\d\s\-()]{7,14}$/.test(data.phone.trim())) {
+    errors.phone = 'Enter a valid phone number'
+  }
+  if (!data.service) errors.service = 'Please select a service type'
+  if (!data.message.trim()) errors.message = 'Please describe your project'
+  return errors
+}
+
 export default function ContactPage() {
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success'>('idle')
   const [focusedField, setFocusedField] = useState<string | null>(null)
-  const [formValues, setFormValues] = useState<Record<string, string>>({
+  const [formErrors, setFormErrors] = useState<FormErrors>({})
+  const [formValues, setFormValues] = useState<FormValues>({
     name: '', email: '', phone: '', city: '', service: '', message: ''
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setFormValues({ ...formValues, [e.target.id]: e.target.value })
+    const { id, value } = e.target
+    setFormValues(prev => ({ ...prev, [id]: value }))
+    // Clear error on change
+    if (formErrors[id as keyof FormValues]) {
+      setFormErrors(prev => ({ ...prev, [id]: undefined }))
+    }
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    const errors = validateForm(formValues)
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors)
+      return
+    }
+    setFormErrors({})
     setFormState('submitting')
-    // Simulate network request
+
     setTimeout(() => {
-      setFormState('success')
-    }, 1500)
+      try {
+        const message = buildWhatsAppMessage(formValues)
+        const encoded = encodeURIComponent(message)
+        const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`
+        window.open(waUrl, '_blank', 'noopener,noreferrer')
+        setFormState('success')
+      } catch {
+        setFormState('idle')
+      }
+    }, 1000)
   }
 
   const inputClasses = (fieldName: string) => `
-    w-full bg-transparent border-b-2 py-4 px-0 text-base font-medium outline-none transition-all duration-300
-    ${focusedField === fieldName ? 'border-brand-accent text-main' : 'border-border-primary text-main'}
+    w-full bg-transparent py-4 px-0 text-base font-medium outline-none transition-all duration-300
+    border-b-2 ${formErrors[fieldName as keyof FormValues] ? 'border-red-500 text-main' : focusedField === fieldName ? 'border-brand-accent text-main' : 'border-border-primary text-main'}
     placeholder:text-transparent
   `
 
   const labelClasses = (fieldName: string) => `
     absolute left-0 transition-all duration-300 pointer-events-none uppercase tracking-[0.2em] font-black text-[10px]
-    ${focusedField === fieldName || formValues[fieldName]
+    ${focusedField === fieldName || formValues[fieldName as keyof FormValues]
       ? '-top-2 text-brand-accent' 
       : 'top-4 text-dim'}
   `
@@ -142,13 +232,13 @@ export default function ContactPage() {
                           animate={{ opacity: 1, scale: 1 }}
                           className="flex flex-col items-center justify-center py-20 text-center"
                         >
-                          <div className="w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center mb-6">
+                          <div className="w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center mb-6" style={{ border: '2px solid rgba(34,197,94,0.3)' }}>
                             <CheckCircle2 className="w-10 h-10 text-green-500" />
                           </div>
-                          <h4 className="text-2xl font-black text-main mb-3">Inquiry Received</h4>
-                          <p className="text-sub mb-8 max-w-sm">Thank you for reaching out. Our engineering team will review your project details and contact you within 24 hours.</p>
+                          <h4 className="text-2xl font-black text-main mb-3">Lead Sent via WhatsApp!</h4>
+                          <p className="text-sub mb-8 max-w-sm">WhatsApp has opened with your pre-filled inquiry. Simply press send — our team will respond within a few hours.</p>
                           <button 
-                            onClick={() => setFormState('idle')}
+                            onClick={() => { setFormState('idle'); setFormValues({ name: '', email: '', phone: '', city: '', service: '', message: '' }); setFormErrors({}); }}
                             className="btn btn-outline text-xs tracking-widest uppercase"
                           >
                             Send Another Inquiry
@@ -160,7 +250,8 @@ export default function ContactPage() {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
-                          onSubmit={handleSubmit} 
+                          onSubmit={handleSubmit}
+                          noValidate
                           className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10 relative z-10"
                         >
                           {/* Name */}
@@ -170,13 +261,13 @@ export default function ContactPage() {
                               id="name"
                               value={formValues.name}
                               onChange={handleChange}
-                              required
                               onFocus={() => setFocusedField('name')}
                               onBlur={() => setFocusedField(null)}
                               className={inputClasses('name')} 
                             />
                             <label htmlFor="name" className={labelClasses('name')}>Full Name *</label>
                             <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-accent transition-all duration-500 group-focus-within:w-full" />
+                            {formErrors.name && <p className="text-[11px] font-bold mt-1.5 text-red-500">{formErrors.name}</p>}
                           </div>
 
                           {/* Email */}
@@ -186,13 +277,13 @@ export default function ContactPage() {
                               id="email"
                               value={formValues.email}
                               onChange={handleChange}
-                              required
                               onFocus={() => setFocusedField('email')}
                               onBlur={() => setFocusedField(null)}
                               className={inputClasses('email')} 
                             />
                             <label htmlFor="email" className={labelClasses('email')}>Email Address *</label>
                             <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-accent transition-all duration-500 group-focus-within:w-full" />
+                            {formErrors.email && <p className="text-[11px] font-bold mt-1.5 text-red-500">{formErrors.email}</p>}
                           </div>
 
                           {/* Phone */}
@@ -202,13 +293,13 @@ export default function ContactPage() {
                               id="phone"
                               value={formValues.phone}
                               onChange={handleChange}
-                              required
                               onFocus={() => setFocusedField('phone')}
                               onBlur={() => setFocusedField(null)}
                               className={inputClasses('phone')} 
                             />
                             <label htmlFor="phone" className={labelClasses('phone')}>Phone Number *</label>
                             <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-accent transition-all duration-500 group-focus-within:w-full" />
+                            {formErrors.phone && <p className="text-[11px] font-bold mt-1.5 text-red-500">{formErrors.phone}</p>}
                           </div>
 
                           {/* City */}
@@ -231,7 +322,6 @@ export default function ContactPage() {
                             <div className="relative">
                               <select 
                                 id="service"
-                                required
                                 value={formValues.service}
                                 onChange={handleChange}
                                 onFocus={() => setFocusedField('service')}
@@ -250,6 +340,7 @@ export default function ContactPage() {
                             </div>
                             <label htmlFor="service" className={labelClasses('service')}>Type of Service *</label>
                             <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-accent transition-all duration-500 group-focus-within:w-full" />
+                            {formErrors.service && <p className="text-[11px] font-bold mt-1.5 text-red-500">{formErrors.service}</p>}
                           </div>
 
                           {/* Message */}
@@ -257,7 +348,6 @@ export default function ContactPage() {
                             <textarea 
                               id="message"
                               rows={4}
-                              required
                               value={formValues.message}
                               onChange={handleChange}
                               onFocus={() => setFocusedField('message')}
@@ -266,21 +356,28 @@ export default function ContactPage() {
                             ></textarea>
                             <label htmlFor="message" className={labelClasses('message')}>Project Brief / Message *</label>
                             <div className="absolute bottom-1.5 left-0 w-0 h-0.5 bg-brand-accent transition-all duration-500 group-focus-within:w-full" />
+                            {formErrors.message && <p className="text-[11px] font-bold mt-1.5 text-red-500">{formErrors.message}</p>}
                           </div>
 
                           {/* Submit */}
-                          <div className="md:col-span-2 pt-6">
+                          <div className="md:col-span-2 pt-6 flex flex-col gap-3">
                             <button 
                               type="submit" 
                               disabled={formState === 'submitting'}
-                              className="w-full relative overflow-hidden group bg-brand-primary text-white font-bold tracking-[0.2em] uppercase text-[11px] h-16 rounded-sm flex items-center justify-center transition-all disabled:opacity-70"
+                              className="w-full relative overflow-hidden group bg-brand-primary text-white font-bold tracking-[0.2em] uppercase text-[11px] h-16 rounded-sm flex items-center justify-center transition-all disabled:opacity-70 disabled:cursor-not-allowed"
                             >
                               <div className="absolute inset-0 bg-brand-accent transform translate-y-full transition-transform duration-500 group-hover:translate-y-0" />
                               <span className="relative z-10 flex items-center gap-3">
-                                {formState === 'submitting' ? 'Sending...' : 'Submit Inquiry'}
-                                {formState !== 'submitting' && <Send className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
+                                {formState === 'submitting' ? (
+                                  <><Loader2 className="w-4 h-4 animate-spin" />Preparing WhatsApp…</>
+                                ) : (
+                                  <>Send via WhatsApp<Send className="w-4 h-4 transition-transform group-hover:translate-x-1" /></>
+                                )}
                               </span>
                             </button>
+                            <p className="text-center text-[10px] font-bold tracking-wide text-dim">
+                              Your inquiry will open in WhatsApp for instant delivery.
+                            </p>
                           </div>
                         </motion.form>
                       )}
