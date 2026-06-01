@@ -29,33 +29,37 @@ const services = [
     id: 'residential',
     title: 'Residential Construction',
     icon: Home,
-    description: 'Specializing in custom villas and premium homes. We transform your personal vision into structural reality with uncompromising quality.',
-    features: ['Custom Villa Design', 'Premium Material Sourcing', 'End-to-End Project Management', 'Sustainable Building Practices'],
-    image: '/assets/images/project_residential.png'
+    what: 'End-to-end design and construction of custom villas and premium independent homes.',
+    why: 'Your home should be a reflection of your legacy. We ensure every brick is laid with precision and structural integrity.',
+    benefit: 'A transparent, stress-free build process with a 10-year structural warranty.',
+    image: '/assets/images/hyd_service_residential_1780297663202.png'
   },
   {
     id: 'commercial',
     title: 'Commercial Construction',
     icon: Building2,
-    description: 'Enterprise-grade spaces designed for functionality and corporate excellence. We build offices, retail spaces, and industrial facilities.',
-    features: ['High-Performance Workspaces', 'Modern Architectural Glass', 'Structural Engineering', 'Regulatory Compliance'],
-    image: '/assets/images/project_commercial.png'
+    what: 'Construction of enterprise-grade offices, retail spaces, and industrial facilities.',
+    why: 'Commercial spaces require strict adherence to timelines and high-performance materials to ensure business continuity.',
+    benefit: 'Scalable, modern infrastructure designed to elevate your brand presence and operational efficiency.',
+    image: '/assets/images/hyd_service_commercial_1780297679347.png'
   },
   {
     id: 'interiors',
-    title: 'Home Interior',
+    title: 'Premium Interiors',
     icon: Layout,
-    description: 'Bespoke spatial design that reflects your lifestyle. Our interior designers blend luxury with ergonomics for every room.',
-    features: ['Modular Kitchens', 'Custom Lighting Design', 'Premium Woodwork', 'Space Optimization'],
-    image: '/assets/images/project_interior.png'
+    what: 'Bespoke spatial design, custom woodwork, and ergonomic interior architecture.',
+    why: 'True luxury lies in the details. We blend aesthetic brilliance with everyday functionality.',
+    benefit: 'A turnkey move-in experience where every room is optimized for comfort and visual impact.',
+    image: '/assets/images/hyd_service_interior_1780297694975.png'
   },
   {
     id: 'renovation',
     title: 'Renovation & Remodeling',
     icon: Hammer,
-    description: 'Breathe new life into existing structures. We specialize in the remodeling of old buildings with modern upgrades.',
-    features: ['Structural Strengthening', 'Façade Modernization', 'Electrical & Plumbing Overhaul', 'Aesthetic Refinement'],
-    image: '/assets/images/about_legacy.png'
+    what: 'Comprehensive structural upgrades, façade modernization, and heritage remodeling.',
+    why: 'Existing structures often hold immense potential that can be unlocked with modern engineering and design.',
+    benefit: 'Breathe new life into your property, significantly increasing its market value and usability.',
+    image: '/assets/images/hyd_service_renovation_1780297715773.png'
   }
 ]
 
@@ -74,7 +78,7 @@ export default function ServicesPage() {
           title="Comprehensive Infrastructure Solutions"
           subtitle="Services"
           description="From groundbreaking surveys to the final interior polish, we offer a full spectrum of architectural and construction expertise."
-          image="/assets/images/hero_bg.png"
+          image="/assets/images/hyd_service_hero_1780297732596.png"
           breadcrumb={[{ label: 'Services' }]}
         />
 
@@ -91,6 +95,8 @@ export default function ServicesPage() {
                           src={s.image}
                           alt={s.title}
                           fill
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                          quality={85}
                           className="object-cover transition-transform duration-1000 group-hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-brand-primary/20 mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -107,17 +113,24 @@ export default function ServicesPage() {
                         <span className="text-eyebrow uppercase">Expertise</span>
                       </div>
                       <h2 className="text-display-sm font-black mb-6 leading-tight text-main">{s.title}</h2>
-                      <p className="text-lg text-sub mb-10 font-medium leading-relaxed">
-                        {s.description}
-                      </p>
-                      
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-12">
-                        {s.features.map((f) => (
-                          <div key={f} className="flex items-center gap-3 py-2 border-b border-border-secondary/50">
-                            <CheckCircle2 className="w-4 h-4 text-brand-accent flex-shrink-0" />
-                            <span className="text-sm font-bold text-main">{f}</span>
+                      <div className="space-y-6 mb-10">
+                        <div>
+                          <h4 className="text-sm font-black uppercase tracking-widest text-brand-accent mb-2">What we do</h4>
+                          <p className="text-base text-main font-medium leading-relaxed">{s.what}</p>
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-black uppercase tracking-widest text-brand-accent mb-2">Why it matters</h4>
+                          <p className="text-base text-sub leading-relaxed">{s.why}</p>
+                        </div>
+                        <div className="p-4 bg-brand-accent/5 border border-brand-accent/20 rounded-sm">
+                          <div className="flex items-start gap-3">
+                            <CheckCircle2 className="w-5 h-5 text-brand-accent flex-shrink-0 mt-0.5" />
+                            <div>
+                              <h4 className="text-xs font-black uppercase tracking-widest text-main mb-1">The Benefit</h4>
+                              <p className="text-sm text-main font-medium leading-relaxed">{s.benefit}</p>
+                            </div>
                           </div>
-                        ))}
+                        </div>
                       </div>
 
                       <Link href="/contact" className="btn btn-outline group px-8 py-4">

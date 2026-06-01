@@ -11,11 +11,11 @@ import { useTheme } from 'next-themes'
 
 const navLinks = [
   { label: 'Home', href: '/', mobileOnly: true },
-  { label: 'About', href: '/about' },
+  { label: 'About Us', href: '/about' },
   { label: 'Services', href: '/services' },
   { label: 'Projects', href: '/projects' },
   { label: 'Packages', href: '/packages' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'Contact Us', href: '/contact' },
 ]
 
 const menuVariants = {
@@ -81,9 +81,8 @@ export default function Navbar() {
               alt="Blitcon Infra"
               width={120}
               height={30}
-              priority
-              className="w-auto h-5 lg:h-6 object-contain"
-              style={{ width: 'auto', height: 'auto', imageRendering: 'auto' }}
+              className="w-auto h-8 lg:h-10 object-contain"
+              style={{ imageRendering: 'auto' }}
             />
           </Link>
 

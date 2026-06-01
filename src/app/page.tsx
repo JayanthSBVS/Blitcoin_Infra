@@ -12,7 +12,6 @@ import ProjectsSection from '@/components/sections/ProjectsSection'
 import TrustSection from '@/components/sections/TrustSection'
 import PackagesSection from '@/components/sections/PackagesSection'
 import TestimonialsSection from '@/components/sections/TestimonialsSection'
-import ContactSection from '@/components/sections/ContactSection'
 import Footer from '@/components/layout/Footer'
 
 export default function HomePage() {
@@ -38,7 +37,6 @@ export default function HomePage() {
       <TrustSection />
       <PackagesSection />
       <TestimonialsSection />
-      <ContactSection />
       <Footer />
       <BackToTop />
     </>

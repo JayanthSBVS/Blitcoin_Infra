@@ -152,7 +152,7 @@ export default function AboutSection() {
             <motion.div style={{ y: imageY }} className="sticky top-28">
               <div className="relative h-[560px] overflow-hidden rounded-sm group shadow-xl border border-border-primary">
                 <Image
-                  src="/assets/images/about_legacy.png"
+                  src="/assets/images/about_legacy_new_1780298412333.png"
                   alt="Blitcon Infra Legacy"
                   fill
                   className="object-cover transition-transform duration-1000 group-hover:scale-105"

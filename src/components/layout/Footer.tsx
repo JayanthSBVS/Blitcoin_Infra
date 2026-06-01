@@ -11,7 +11,7 @@ const navLinks = [
   { label: 'Services', href: '/services' },
   { label: 'Projects', href: '/projects' },
   { label: 'Packages', href: '/packages' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'Contact Us', href: '/contact' },
 ]
 
 const serviceLinks = [
@@ -41,81 +41,7 @@ export default function Footer() {
       {/* Top divider */}
       <div className="w-full h-px" style={{ background: 'linear-gradient(to right, transparent, var(--border-primary), transparent)' }} />
 
-      {/* ── CTA Band ── */}
-      <div
-        className="relative overflow-hidden"
-        style={{ paddingBlock: '6rem', backgroundColor: 'var(--bg-secondary)', borderBottom: '1px solid var(--border-primary)' }}
-      >
-        <div className="arch-grid opacity-15 absolute inset-0" />
 
-        {/* SVG Skyline — visible in both themes */}
-        <motion.div
-          style={{ y: skyY, opacity: skyOpacity } as any}
-          className="absolute bottom-0 left-0 right-0 pointer-events-none select-none"
-          aria-hidden="true"
-        >
-          <svg viewBox="0 0 1440 160" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
-            <rect x="0"    y="110" width="60"  height="50" fill="rgba(30,58,110,0.06)" />
-            <rect x="65"   y="85"  width="40"  height="75" fill="rgba(30,58,110,0.08)" />
-            <rect x="110"  y="95"  width="80"  height="65" fill="rgba(30,58,110,0.05)" />
-            <rect x="200"  y="60"  width="28"  height="100" fill="rgba(30,58,110,0.09)" />
-            <rect x="204"  y="52"  width="6"   height="8"  fill="rgba(30,64,175,0.25)" />
-            <rect x="235"  y="100" width="55"  height="60" fill="rgba(30,58,110,0.06)" />
-            <rect x="300"  y="75"  width="25"  height="85" fill="rgba(30,58,110,0.08)" />
-            <rect x="360"  y="55"  width="16"  height="105" fill="rgba(30,58,110,0.10)" />
-            <rect x="363"  y="48"  width="5"   height="7"  fill="rgba(30,64,175,0.30)" />
-            <rect x="400"  y="88"  width="90"  height="72" fill="rgba(30,58,110,0.05)" />
-            <rect x="500"  y="70"  width="32"  height="90" fill="rgba(30,58,110,0.09)" />
-            <rect x="610"  y="50"  width="24"  height="110" fill="rgba(30,58,110,0.10)" />
-            <rect x="613"  y="43"  width="5"   height="7"  fill="rgba(30,64,175,0.25)" />
-            <rect x="645"  y="80"  width="80"  height="80" fill="rgba(30,58,110,0.05)" />
-            <rect x="785"  y="60"  width="30"  height="100" fill="rgba(30,58,110,0.09)" />
-            <rect x="789"  y="53"  width="6"   height="7"  fill="rgba(30,64,175,0.20)" />
-            <rect x="900"  y="75"  width="20"  height="85" fill="rgba(30,58,110,0.08)" />
-            <rect x="930"  y="88"  width="90"  height="72" fill="rgba(30,58,110,0.05)" />
-            <rect x="1030" y="62"  width="34"  height="98" fill="rgba(30,58,110,0.09)" />
-            <rect x="1033" y="55"  width="5"   height="7"  fill="rgba(30,64,175,0.25)" />
-            <rect x="1140" y="70"  width="80"  height="90" fill="rgba(30,58,110,0.06)" />
-            <rect x="1300" y="66"  width="40"  height="94" fill="rgba(30,58,110,0.08)" />
-            <rect x="1350" y="98"  width="90"  height="62" fill="rgba(30,58,110,0.05)" />
-            <rect x="0"    y="158" width="1440" height="2" fill="rgba(30,58,110,0.08)" />
-          </svg>
-        </motion.div>
-
-        <div className="container-fluid relative z-10 text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 12 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            className="text-eyebrow block mb-6"
-          >
-            Ready to Build?
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 36 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.12, duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-            className="text-display-lg mb-8 mx-auto"
-            style={{ maxWidth: '44rem' }}
-          >
-            Let's Create{' '}
-            <span className="gradient-text-brand">Something Remarkable</span>
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.28 }}
-            className="flex flex-wrap gap-4 justify-center"
-          >
-            <Link href="#contact" className="btn btn-primary group">
-              Start a Project
-              <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-            <Link href="tel:+917997696688" className="btn btn-outline">
-              Call Us Now
-            </Link>
-          </motion.div>
-        </div>
-      </div>
 
       {/* ── Main Footer Grid ── */}
       <div className="py-16">
@@ -195,7 +121,7 @@ export default function Footer() {
             {/* Contact info */}
             <div>
               <h4 className="text-[9px] font-black uppercase tracking-[0.3em] mb-6 text-dim">
-                Contact
+                Contact Us
               </h4>
               <div className="flex flex-col gap-5">
                 {[

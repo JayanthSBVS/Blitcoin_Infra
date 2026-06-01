@@ -257,6 +257,118 @@ export default function PackageConfigurator() {
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
+      {/* -- Premium Package Cards -- */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+        {/* Standard Card */}
+        <div className="card-premium p-10 flex flex-col h-full bg-card border-border-primary rounded-sm shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-12 h-12 rounded-full bg-brand-accent/10 flex items-center justify-center border border-brand-accent/20">
+              <ShieldCheck className="w-6 h-6 text-brand-accent" />
+            </div>
+            <div>
+              <h3 className="text-2xl font-black text-main">Standard</h3>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-dim">Best For: Essential Durability</p>
+            </div>
+          </div>
+          <div className="mb-8">
+             <span className="text-4xl font-black text-main">Rs. 1850</span>
+             <span className="text-sm font-bold text-sub"> / sft</span>
+          </div>
+          <div className="space-y-4 mb-10 flex-grow">
+            <div className="flex justify-between items-center pb-3 border-b border-border-secondary">
+               <span className="text-sm text-sub">Warranty</span>
+               <span className="text-sm font-black text-brand-accent">10 Years</span>
+            </div>
+            <div className="flex justify-between items-center pb-3 border-b border-border-secondary">
+               <span className="text-sm text-sub">Cement</span>
+               <span className="text-sm font-bold text-main">Zuari / Nagarjuna</span>
+            </div>
+            <div className="flex justify-between items-center pb-3 border-b border-border-secondary">
+               <span className="text-sm text-sub">Steel</span>
+               <span className="text-sm font-bold text-main">Radha TMT</span>
+            </div>
+            <div className="flex justify-between items-center pb-3 border-b border-border-secondary">
+               <span className="text-sm text-sub">Coverage</span>
+               <span className="text-sm font-bold text-main">Core Structure</span>
+            </div>
+          </div>
+          <Link href="/contact" className="btn btn-outline w-full text-center">Select Standard</Link>
+        </div>
+
+        {/* Premium Card */}
+        <div className="card-premium p-10 flex flex-col h-full bg-surface-stone border-brand-accent/30 rounded-sm shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 relative overflow-hidden">
+          <div className="absolute top-0 right-0 px-4 py-1 bg-brand-accent text-white text-[9px] font-black uppercase tracking-widest rounded-bl-sm">Recommended</div>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-12 h-12 rounded-full bg-brand-accent/20 flex items-center justify-center border border-brand-accent/30">
+              <Gem className="w-6 h-6 text-brand-accent" />
+            </div>
+            <div>
+              <h3 className="text-2xl font-black text-main">Premium</h3>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-brand-accent">Best For: Superior Finish</p>
+            </div>
+          </div>
+          <div className="mb-8">
+             <span className="text-4xl font-black text-main">Rs. 2000</span>
+             <span className="text-sm font-bold text-sub"> / sft</span>
+          </div>
+          <div className="space-y-4 mb-10 flex-grow">
+            <div className="flex justify-between items-center pb-3 border-b border-border-primary/50">
+               <span className="text-sm text-sub">Warranty</span>
+               <span className="text-sm font-black text-brand-accent">10 Years</span>
+            </div>
+            <div className="flex justify-between items-center pb-3 border-b border-border-primary/50">
+               <span className="text-sm text-sub">Cement</span>
+               <span className="text-sm font-bold text-main">UltraTech / ACC</span>
+            </div>
+            <div className="flex justify-between items-center pb-3 border-b border-border-primary/50">
+               <span className="text-sm text-sub">Steel</span>
+               <span className="text-sm font-bold text-main">Vizag TMT</span>
+            </div>
+            <div className="flex justify-between items-center pb-3 border-b border-border-primary/50">
+               <span className="text-sm text-sub">Coverage</span>
+               <span className="text-sm font-bold text-main">Premium Materials</span>
+            </div>
+          </div>
+          <Link href="/contact" className="btn btn-primary w-full text-center">Select Premium</Link>
+        </div>
+
+        {/* Luxury Card */}
+        <div className="card-premium p-10 flex flex-col h-full bg-card border-border-primary rounded-sm shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-12 h-12 rounded-full bg-brand-accent/10 flex items-center justify-center border border-brand-accent/20">
+              <Crown className="w-6 h-6 text-brand-accent" />
+            </div>
+            <div>
+              <h3 className="text-2xl font-black text-main">Luxury</h3>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-dim">Best For: Uncompromised Luxury</p>
+            </div>
+          </div>
+          <div className="mb-8">
+             <span className="text-4xl font-black text-main">Rs. 2300</span>
+             <span className="text-sm font-bold text-sub"> / sft</span>
+          </div>
+          <div className="space-y-4 mb-10 flex-grow">
+            <div className="flex justify-between items-center pb-3 border-b border-border-secondary">
+               <span className="text-sm text-sub">Warranty</span>
+               <span className="text-sm font-black text-brand-accent">10 Years</span>
+            </div>
+            <div className="flex justify-between items-center pb-3 border-b border-border-secondary">
+               <span className="text-sm text-sub">Cement</span>
+               <span className="text-sm font-bold text-main">UltraTech / ACC</span>
+            </div>
+            <div className="flex justify-between items-center pb-3 border-b border-border-secondary">
+               <span className="text-sm text-sub">Steel</span>
+               <span className="text-sm font-bold text-main">Vizag / Jindal TMT</span>
+            </div>
+            <div className="flex justify-between items-center pb-3 border-b border-border-secondary">
+               <span className="text-sm text-sub">Coverage</span>
+               <span className="text-sm font-bold text-main">Ultimate Experience</span>
+            </div>
+          </div>
+          <Link href="/contact" className="btn btn-outline w-full text-center">Select Luxury</Link>
+        </div>
+      </div>
+
       {/* -- Desktop Comparison Table -- */}
       <div className="hidden lg:block">
         {/* Sticky Header - Optimized Blur */}

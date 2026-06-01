@@ -43,16 +43,27 @@ export default function AboutPage() {
                     <p>
                       At the heart of our success lies a passionate team of professionals who bring unparalleled expertise, creativity, and precision to every project. We take pride in transforming spaces into functional, aesthetically pleasing, and sustainable environments tailored to our clients' unique needs.
                     </p>
+                    <p>
+                      Join us as we continue to build a legacy of trust, innovation, and excellence in the construction industry.
+                    </p>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-8 mt-12">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12">
                     <div className="flex flex-col gap-2">
-                      <div className="text-4xl lg:text-5xl font-black text-brand-accent">6+</div>
-                      <div className="text-[10px] font-black uppercase tracking-widest text-dim">Years Expertise</div>
+                      <div className="text-3xl lg:text-4xl font-black text-brand-accent">6+</div>
+                      <div className="text-[9px] font-black uppercase tracking-widest text-dim">Years Experience</div>
                     </div>
                     <div className="flex flex-col gap-2">
-                      <div className="text-4xl lg:text-5xl font-black text-brand-accent">150+</div>
-                      <div className="text-[10px] font-black uppercase tracking-widest text-dim">Projects Built</div>
+                      <div className="text-3xl lg:text-4xl font-black text-brand-accent">150+</div>
+                      <div className="text-[9px] font-black uppercase tracking-widest text-dim">Projects Built</div>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <div className="text-3xl lg:text-4xl font-black text-brand-accent">100%</div>
+                      <div className="text-[9px] font-black uppercase tracking-widest text-dim">Client Satisfaction</div>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <div className="text-3xl lg:text-4xl font-black text-brand-accent">10 Yr</div>
+                      <div className="text-[9px] font-black uppercase tracking-widest text-dim">Structural Warranty</div>
                     </div>
                   </div>
                 </Reveal>
@@ -62,7 +73,7 @@ export default function AboutPage() {
                 <Reveal direction="left" delay={0.2}>
                   <div className="relative aspect-[4/5] rounded-sm overflow-hidden shadow-xl group border border-border-primary">
                     <Image
-                      src="/assets/images/about_legacy.png"
+                      src="/assets/images/about_legacy_new_1780298412333.png"
                       alt="Blitcon Construction Quality"
                       fill
                       sizes="(max-width: 1024px) 100vw, 50vw"
@@ -91,7 +102,7 @@ export default function AboutPage() {
                   </div>
                   <h3 className="text-3xl font-black mb-6 text-main">Our Mission</h3>
                   <p className="text-lg text-sub leading-relaxed font-medium">
-                    Our goal is to be the builder you can trust the most. We earn that trust by being honest and aiming for perfection in everything we do. We only take on a few jobs at a time, so we can give your project our full attention and ensure the quality is excellent.
+                    Our goal is to be the builder you can trust the most. We earn that trust by being honest and aiming for perfection in everything we do. We only take on a few jobs at a time, so we can give your project our full attention and ensure the quality is excellent. For us, success means building strong relationships and keeping our promises, creating work that proves you can count on us.
                   </p>
                   <div className="mt-8 flex flex-wrap gap-4">
                     {['Honesty', 'Perfection', 'Integrity'].map(tag => (
@@ -111,7 +122,7 @@ export default function AboutPage() {
                   </div>
                   <h3 className="text-3xl font-black mb-6 text-white">Our Vision</h3>
                   <p className="text-lg text-white/90 leading-relaxed font-medium">
-                    To build a legacy of trust, innovation, and excellence in the construction industry. We aim to transform urban landscapes through sustainable environments and functional aesthetics that endure for generations.
+                    We want to become the most trusted name in construction in our area. When people see our name, we want them to know it stands for great quality and work done right. Our goal is to be the first choice for clients who want a reliable partner and total peace of mind. In the long run, we want our legacy to be simple: to be remembered as the company everyone could trust.
                   </p>
                   <div className="mt-8 flex flex-wrap gap-4">
                     {['Innovation', 'Sustainability', 'Legacy'].map(tag => (
@@ -139,31 +150,41 @@ export default function AboutPage() {
               </div>
             </Reveal>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 lg:gap-12">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 lg:gap-8">
               {[
                 { 
                   icon: Shield, 
-                  title: 'Unyielding Integrity', 
-                  desc: 'Honesty is the bedrock of our business. We communicate transparently at every stage of construction.' 
+                  title: 'Quality', 
+                  desc: 'Uncompromising standards.' 
                 },
                 { 
                   icon: Users, 
-                  title: 'Client Collaboration', 
-                  desc: 'Your vision drives our process. We partner closely with you to ensure every detail exceeds expectations.' 
+                  title: 'Loyalty', 
+                  desc: 'Committed to our clients.' 
+                },
+                { 
+                  icon: Target, 
+                  title: 'Trustworthiness', 
+                  desc: 'Honesty as our bedrock.' 
+                },
+                { 
+                  icon: Eye, 
+                  title: 'Passion', 
+                  desc: 'Driven by creativity.' 
                 },
                 { 
                   icon: Clock, 
-                  title: 'Timely Delivery', 
-                  desc: 'Precision without delays. We respect your timeline and manage resources to meet every milestone.' 
+                  title: 'Perfection', 
+                  desc: 'Precision in every detail.' 
                 }
               ].map((v, i) => (
                 <Reveal key={i} delay={i * 0.1}>
-                  <div className="text-center p-10 rounded-sm hover:bg-surface-stone transition-all duration-500 border border-transparent hover:border-border-primary group">
-                    <div className="w-16 h-16 rounded-full bg-brand-accent/5 flex items-center justify-center mx-auto mb-8 transition-transform group-hover:scale-110">
-                      <v.icon className="w-7 h-7 text-brand-accent" />
+                  <div className="text-center p-6 lg:p-8 rounded-sm hover:bg-surface-stone transition-all duration-500 border border-transparent hover:border-border-primary group h-full">
+                    <div className="w-14 h-14 rounded-full bg-brand-accent/5 flex items-center justify-center mx-auto mb-6 transition-transform group-hover:scale-110">
+                      <v.icon className="w-6 h-6 text-brand-accent" />
                     </div>
-                    <h4 className="text-xl font-black mb-4 text-main">{v.title}</h4>
-                    <p className="text-sm text-sub leading-relaxed font-medium">{v.desc}</p>
+                    <h4 className="text-lg font-black mb-3 text-main">{v.title}</h4>
+                    <p className="text-xs text-sub leading-relaxed font-medium">{v.desc}</p>
                   </div>
                 </Reveal>
               ))}

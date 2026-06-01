@@ -4,7 +4,7 @@ import { useState } from 'react'
 import PageHero from '@/components/ui/PageHero'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { Phone, Mail, MapPin, MessageSquare, Send, CheckCircle2, ChevronDown, Building2, Map, ShieldCheck, Clock, AlertCircle, Loader2 } from 'lucide-react'
+import { Phone, Mail, MapPin, MessageSquare, Send, CheckCircle2, ChevronDown, Building2, Map, ShieldCheck, Clock, AlertCircle, Loader2, Facebook, Instagram, Youtube, Twitter } from 'lucide-react'
 import Footer from '@/components/layout/Footer'
 import PageTransition from '@/components/ui/PageTransition'
 import Reveal from '@/components/ui/Reveal'
@@ -136,11 +136,11 @@ export default function ContactPage() {
     <PageTransition>
       <main className="bg-primary min-h-screen">
         <PageHero
-          title="Start Your Architectural Journey"
+          title="Building Your Vision, Shaping Hyderabad's Skyline"
           subtitle="Contact Us"
-          description="Ready to build? Reach out to our engineering experts for a consultation or detailed project estimation."
+          description="Ready to discuss your dream project? Reach out to our engineering experts for a detailed estimation and structural consultation."
           image="/assets/images/project_interior.png"
-          breadcrumb={[{ label: 'Contact' }]}
+          breadcrumb={[{ label: 'Contact Us' }]}
         />
 
         {/* -- Contact Form & Info Section -- */}
@@ -181,26 +181,23 @@ export default function ContactPage() {
                       </div>
                     </div>
 
-                    <div className="flex gap-5 group items-start">
-                      <div className="w-12 h-12 rounded-sm flex items-center justify-center flex-shrink-0 bg-surface-card border border-border-primary group-hover:border-brand-accent/50 transition-all duration-500">
-                        <MapPin className="w-5 h-5 text-brand-accent" />
-                      </div>
-                      <div>
-                        <h4 className="text-[10px] font-black uppercase tracking-[0.25em] text-dim mb-1">Location</h4>
-                        <p className="text-lg font-black text-main">Hyderabad, India</p>
-                        <p className="text-xs text-sub mt-1">Serving the entire regional area</p>
-                      </div>
                     </div>
-                  </div>
 
                   <div className="mt-14 pt-8 border-t border-border-primary flex flex-col gap-4">
-                     <p className="text-[10px] font-black uppercase tracking-[0.2em] text-dim mb-2">Connect with us</p>
-                     <div className="flex gap-3">
-                       {['LinkedIn', 'Instagram', 'Twitter'].map(social => (
-                         <a key={social} href="#" className="text-xs font-bold text-main hover:text-brand-accent border-b border-transparent hover:border-brand-accent transition-all">
-                           {social}
-                         </a>
-                       ))}
+                     <p className="text-[10px] font-black uppercase tracking-[0.2em] text-dim mb-4">Connect With Us</p>
+                     <div className="flex gap-4">
+                       <a href="#" className="w-10 h-10 flex items-center justify-center rounded-sm bg-surface-card border border-border-primary hover:border-brand-accent hover:text-brand-accent transition-all duration-300 text-main group">
+                         <Facebook className="w-4 h-4 transition-transform group-hover:scale-110" />
+                       </a>
+                       <a href="#" className="w-10 h-10 flex items-center justify-center rounded-sm bg-surface-card border border-border-primary hover:border-brand-accent hover:text-brand-accent transition-all duration-300 text-main group">
+                         <Instagram className="w-4 h-4 transition-transform group-hover:scale-110" />
+                       </a>
+                       <a href="#" className="w-10 h-10 flex items-center justify-center rounded-sm bg-surface-card border border-border-primary hover:border-brand-accent hover:text-brand-accent transition-all duration-300 text-main group">
+                         <Youtube className="w-4 h-4 transition-transform group-hover:scale-110" />
+                       </a>
+                       <a href="#" className="w-10 h-10 flex items-center justify-center rounded-sm bg-surface-card border border-border-primary hover:border-brand-accent hover:text-brand-accent transition-all duration-300 text-main group">
+                         <Twitter className="w-4 h-4 transition-transform group-hover:scale-110" />
+                       </a>
                      </div>
                   </div>
                 </Reveal>
@@ -214,14 +211,16 @@ export default function ContactPage() {
                     {/* Background decoration */}
                     <div className="absolute top-0 right-0 w-64 h-64 bg-brand-accent/5 rounded-full blur-3xl pointer-events-none" />
 
-                    <div className="flex items-center gap-3 mb-12 relative z-10">
-                      <div className="w-10 h-10 rounded-full bg-brand-accent/10 flex items-center justify-center border border-brand-accent/20">
-                        <MessageSquare className="w-4 h-4 text-brand-accent" />
+                    <div className="mb-12 relative z-10">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 rounded-full bg-brand-accent/10 flex items-center justify-center border border-brand-accent/20">
+                          <MessageSquare className="w-4 h-4 text-brand-accent" />
+                        </div>
+                        <h3 className="text-2xl font-black text-main">Ready to Discuss Your Dream Project?</h3>
                       </div>
-                      <div>
-                        <h3 className="text-2xl font-black text-main">Project Inquiry</h3>
-                        <p className="text-xs font-bold uppercase tracking-widest text-dim mt-1">Fill out the details below</p>
-                      </div>
+                      <p className="text-sm font-medium text-sub max-w-lg">
+                        Our experts are ready to help you plan, estimate, and execute your construction project.
+                      </p>
                     </div>
                     
                     <AnimatePresence mode="wait">
@@ -371,7 +370,7 @@ export default function ContactPage() {
                                 {formState === 'submitting' ? (
                                   <><Loader2 className="w-4 h-4 animate-spin" />Preparing WhatsApp…</>
                                 ) : (
-                                  <>Send via WhatsApp<Send className="w-4 h-4 transition-transform group-hover:translate-x-1" /></>
+                                  <>Request Consultation<Send className="w-4 h-4 transition-transform group-hover:translate-x-1" /></>
                                 )}
                               </span>
                             </button>
@@ -420,37 +419,7 @@ export default function ContactPage() {
           </div>
         </section>
 
-        {/* -- Map Visual -- */}
-        <section className="relative h-[600px] w-full group overflow-hidden">
-          {/* Interactive iframe map could go here, using an image as placeholder for premium look */}
-          <Image
-            src="/assets/images/hero_bg.png"
-            alt="Hyderabad Location"
-            fill
-            className="object-cover transition-transform duration-1000 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-primary/40 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-primary" />
-          
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <Reveal>
-              <div className="p-10 lg:p-14 bg-surface-card/90 backdrop-blur-xl rounded-sm text-center shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] max-w-sm border border-border-primary pointer-events-auto hover:-translate-y-2 transition-transform duration-500">
-                <div className="w-16 h-16 rounded-full bg-brand-accent/10 flex items-center justify-center mx-auto mb-8 relative">
-                  <div className="absolute inset-0 rounded-full border border-brand-accent/30 animate-ping opacity-20" />
-                  <Building2 className="w-6 h-6 text-brand-accent relative z-10" />
-                </div>
-                <h3 className="text-2xl font-black mb-4 text-main tracking-tight">Our Headquarters</h3>
-                <p className="text-sm text-sub font-medium leading-relaxed">
-                  Hyderabad, Telangana
-                  <br />India
-                </p>
-                <div className="mt-8 pt-8 border-t border-border-primary">
-                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-brand-accent">Corporate Office</span>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </section>
+
 
         <Footer />
       </main>

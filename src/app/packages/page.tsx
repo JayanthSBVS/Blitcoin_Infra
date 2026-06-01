@@ -3,6 +3,7 @@ import PackageConfigurator from '@/components/ui/PackageConfigurator'
 import Footer from '@/components/layout/Footer'
 import PageTransition from '@/components/ui/PageTransition'
 import Reveal from '@/components/ui/Reveal'
+import { ShieldCheck } from 'lucide-react'
 
 export const metadata = {
   title: 'Construction Packages | Blitcon Infra',
@@ -15,14 +16,28 @@ export default function PackagesPage() {
       <main className="bg-surface min-h-screen">
         <PageHero
           title="Transparent Premium Packages"
-          subtitle="Investment"
+          subtitle="Construction Packages"
           description="Choose the tier of craftsmanship that fits your vision. Every package includes full structural design, 3D elevation, and engineering oversight."
           image="/assets/images/about_hero.png"
           breadcrumb={[{ label: 'Packages' }]}
         />
 
-        {/* -- Intentional Gap after Hero -- */}
-        <div className="h-24 lg:h-32" />
+        {/* -- Prominent Trust Strip -- */}
+        <section className="bg-brand-deep py-12 lg:py-16 border-y border-brand-accent/20 mt-12 mb-20 lg:mb-32">
+          <div className="container-fluid text-center">
+            <Reveal>
+              <div className="flex flex-col items-center justify-center gap-4">
+                <div className="w-16 h-16 bg-brand-accent/20 rounded-full flex items-center justify-center mb-2 border border-brand-accent/30">
+                  <ShieldCheck className="w-8 h-8 text-brand-light" />
+                </div>
+                <h2 className="text-3xl lg:text-4xl font-black text-white tracking-tight">10 Year Structural Warranty</h2>
+                <p className="text-brand-muted text-lg lg:text-xl font-medium max-w-2xl mx-auto">
+                  Built to last. Backed by confidence. Every Blitcon build comes with our ironclad structural guarantee.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </section>
 
         {/* -- Package Comparison Section -- */}
         <section className="pb-24 lg:pb-32 overflow-visible">
@@ -36,7 +51,7 @@ export default function PackagesPage() {
                 </div>
                 <h2 className="text-display-sm font-black mb-6 text-main">Architecture & Quality <span className="text-brand-accent">Comparison</span></h2>
                 <p className="text-lg text-sub font-medium leading-relaxed">
-                  We believe in absolute transparency. Compare every detail—from the grade of steel to the quality of interior paint—across our tiered investment levels.
+                  We believe in absolute transparency. Compare every detail—from the grade of steel to the quality of interior paint—across our tiered construction packages.
                 </p>
               </div>
             </Reveal>
